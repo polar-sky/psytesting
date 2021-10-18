@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".MainActivity"
+    android:background="@drawable/background">
+
+<EditText
+    android:id="@+id/username"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Логин"
+    android:layout_marginTop="100dp"/>
+
+<EditText
+    android:id="@+id/name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Ваше имя"
+    android:layout_marginTop="50dp"
+    android:layout_below="@+id/username"/>
+
+<EditText
+    android:id="@+id/password"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/name"
+    android:layout_marginTop="50dp"
+    android:hint="Пароль" />
+
+<EditText
+    android:id="@+id/repeatpswd"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Повторите пароль"
+    android:layout_marginTop="50dp"
+    android:layout_below="@+id/password"/>
+
+<Button
+    android:id="@+id/register"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Зарегистрироваться"
+    android:layout_marginTop="50dp"
+    android:background="@drawable/button"
+    android:layout_below="@+id/repeatpswd"/>
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/register"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/button"
+        android:text="Уже зарегистрированы?" />
+
+</RelativeLayout>
