@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TestPage">
+
+    <RadioButton
+        android:id="@+id/radioButton7"
+        android:layout_width="50dp"
+        android:layout_height="47dp"
+        android:text="4"
+        android:textSize="20"
+        tools:layout_editor_absoluteX="225dp"
+        tools:layout_editor_absoluteY="275dp" />
+
+    <RadioButton
+        android:id="@+id/radioButton5"
+        android:layout_width="50dp"
+        android:layout_height="47dp"
+        android:text="2"
+        android:textSize="20"
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="275dp" />
+
+    <RadioButton
+        android:id="@+id/radioButton3"
+        android:layout_width="50dp"
+        android:layout_height="47dp"
+        android:text="1"
+        android:textSize="20"
+        tools:layout_editor_absoluteX="75dp"
+        tools:layout_editor_absoluteY="275dp" />
+
+    <RadioButton
+        android:id="@+id/radioButton6"
+        android:layout_width="50dp"
+        android:layout_height="47dp"
+        android:text="3"
+        android:textSize="20"
+        tools:layout_editor_absoluteX="175dp"
+        tools:layout_editor_absoluteY="275dp" />
+
+    <RadioButton
+        android:id="@+id/radioButton8"
+        android:layout_width="50dp"
+        android:layout_height="47dp"
+        android:text="5"
+        android:textSize="20"
+        tools:layout_editor_absoluteX="275dp"
+        tools:layout_editor_absoluteY="275dp" />
+
+    <Button
+        android:id="@+id/button7"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="<- На главную"
+        android:textAllCaps="false"
+        android:textColor="#3F51B5"
+        android:textSize="16sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="323dp"
+        android:layout_height="118dp"
+        android:text="1. Я больше скептически настроен к новой информации"
+        android:textAlignment="viewStart"
+        android:textSize="30"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="115dp" />
+
+    <RadioGroup
+        android:layout_width="253dp"
+        android:layout_height="84dp"
+        app:layout_constraintEnd_toEndOf="@+id/radioButton8"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/radioButton3"
+        tools:layout_editor_absoluteY="254dp" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Далее"
+        android:textSize="15"
+        tools:layout_editor_absoluteX="240dp"
+        tools:layout_editor_absoluteY="378dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".Register">
 
+    <Button
+        android:id="@+id/button5"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/teal_700"
+        android:backgroundTintMode="add"
+        android:text="Зарегистрироваться"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="#FFEB3B"
+        android:textSize="18"
+        android:textStyle="bold"
+        app:iconTint="#FFEB3B"
+        tools:layout_editor_absoluteX="86dp"
+        tools:layout_editor_absoluteY="505dp" />
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -81,12 +98,11 @@
         tools:layout_editor_absoluteY="365dp" />
 
     <RadioGroup
-        android:layout_width="0dp"
-        android:layout_height="29dp"
-        app:layout_constraintBottom_toBottomOf="@+id/radioButton2"
-        app:layout_constraintEnd_toStartOf="@+id/radioButton"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/radioButton2" />
+        android:layout_width="188dp"
+        android:layout_height="147dp"
+        app:layout_constraintBottom_toBottomOf="@+id/radioButton4"
+        app:layout_constraintTop_toTopOf="@+id/radioButton"
+        tools:layout_editor_absoluteX="70dp" />
 
     <RadioButton
         android:id="@+id/radioButton4"

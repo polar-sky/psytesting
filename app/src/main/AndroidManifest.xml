@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Psytestingmbti">
         <activity
+            android:name=".Help"
+            android:exported="false" />
+        <activity
+            android:name=".TestPage2"
+            android:exported="false" />
+        <activity
+            android:name=".TestPage"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
             android:name=".Register"
             android:exported="false" />
         <activity
