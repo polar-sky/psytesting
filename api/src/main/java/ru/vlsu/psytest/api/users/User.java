@@ -1,26 +1,41 @@
 package ru.vlsu.psytest.api.users;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class User {
 
     @Id
     private Integer ID;
+    @Column(unique = true, nullable = false)
     private String login;
+    @Column(nullable = false)
     private String password;
     private String gender;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> roles;
+
 
     public User() {
     }
 
-    public User(Integer ID, String login, String password, String gender) {
+    public User(Integer ID, String login, String password, String gender, Set<Role> roles) {
         this.ID = ID;
         this.login = login;
         this.password = password;
         this.gender = gender;
+        this.roles = roles;
     }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
 
     public Integer getID() {
         return ID;
