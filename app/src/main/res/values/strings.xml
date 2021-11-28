@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">psytesting-mbti</string>
+    <string name="button500"><![CDATA[<- На главную]]></string>
 </resources>

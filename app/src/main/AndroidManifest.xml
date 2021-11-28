@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Psytestingmbti">
         <activity
+            android:name=".MainWithAuth"
+            android:exported="false" />
+        <activity
             android:name=".Help"
             android:exported="false" />
         <activity
