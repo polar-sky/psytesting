@@ -4,113 +4,127 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Register">
+    tools:context=".activity.Register">
 
     <Button
         android:id="@+id/button5"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="57dp"
         android:background="@color/teal_700"
         android:backgroundTintMode="add"
-        android:text="Зарегистрироваться"
+        android:text="@string/zaregistration"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="#FFEB3B"
-        android:textSize="18"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:iconTint="#FFEB3B"
-        tools:layout_editor_absoluteX="86dp"
-        tools:layout_editor_absoluteY="505dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Регистрация"
-        android:textSize="50"
-        tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="76dp" />
+        android:layout_marginTop="72dp"
+        android:text="@string/registration"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.58"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Логин"
-        android:textSize="20"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="213dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="74dp"
+        android:text="@string/login"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Пароль"
-        android:textSize="20"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="265dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/password"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Пол"
-        android:textSize="20"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="377dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="80dp"
+        android:text="@string/sex"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <EditText
         android:id="@+id/editTextTextPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="Введите пароль"
+        android:hint="@string/enter_password"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="95dp"
-        tools:layout_editor_absoluteY="257dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="63dp"
         android:ems="10"
-        android:hint="Введите логин"
+        android:hint="@string/enter_login"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="95dp"
-        tools:layout_editor_absoluteY="202dp" />
-
-    <RadioButton
-        android:id="@+id/radioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Мужской"
-        android:textSize="18"
-        tools:layout_editor_absoluteX="95dp"
-        tools:layout_editor_absoluteY="320dp" />
-
-    <RadioButton
-        android:id="@+id/radioButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Женский"
-        android:textSize="18"
-        tools:layout_editor_absoluteX="95dp"
-        tools:layout_editor_absoluteY="365dp" />
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <RadioGroup
-        android:layout_width="188dp"
-        android:layout_height="147dp"
-        app:layout_constraintBottom_toBottomOf="@+id/radioButton4"
-        app:layout_constraintTop_toTopOf="@+id/radioButton"
-        tools:layout_editor_absoluteX="70dp" />
+        android:id="@+id/radioGroup2"
+        android:layout_width="134dp"
+        android:layout_height="98dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="58dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword">
 
-    <RadioButton
-        android:id="@+id/radioButton4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Не определен"
-        android:textSize="18"
-        tools:layout_editor_absoluteX="95dp"
-        tools:layout_editor_absoluteY="414dp" />
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/male"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="@string/female"
+            android:textSize="18sp" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

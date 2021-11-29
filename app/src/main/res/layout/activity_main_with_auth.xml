@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainWithAuth">
+    tools:context=".activity.MainWithAuth">
 
     <TextView
         android:id="@+id/textView23"
@@ -13,7 +13,7 @@
         android:layout_marginStart="120dp"
         android:fontFamily="sans-serif-condensed"
         android:text="MBTI"
-        android:textSize="80"
+        android:textSize="80sp"
         android:textStyle="bold"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="172dp"
         android:text="Тест личности"
-        android:textSize="50"
+        android:textSize="50sp"
         android:textStyle="bold"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="#FFEB3B"
-        android:textSize="18"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:iconTint="#FFEB3B"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,6 +67,7 @@
         android:layout_marginStart="138dp"
         android:layout_marginBottom="129dp"
         android:text="Статистика"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

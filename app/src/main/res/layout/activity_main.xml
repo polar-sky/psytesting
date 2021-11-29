@@ -4,80 +4,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <Button
         android:id="@+id/button4"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
         android:background="@color/teal_700"
         android:backgroundTintMode="add"
-        android:text="Пройти тест"
+        android:text="@string/run_test"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="#FFEB3B"
-        android:textSize="18"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:iconTint="#FFEB3B"
-        tools:layout_editor_absoluteX="126dp"
-        tools:layout_editor_absoluteY="405dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
         android:id="@+id/button3"
         style="@style/Widget.MaterialComponents.TimePicker.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:background="@color/teal_700"
         android:backgroundTintMode="add"
-        android:text="Уже имеется аккаунт"
+        android:text="@string/have_acc"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#71716E"
-        android:textSize="18"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:iconTint="#FFEB3B"
-        tools:layout_editor_absoluteX="111dp"
-        tools:layout_editor_absoluteY="644dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Тест личности"
-        android:textSize="50"
+        android:layout_marginTop="116dp"
+        android:text="@string/name_test"
+        android:textSize="50sp"
         android:textStyle="bold"
         android:visibility="visible"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="172dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed"
-        android:text="MBTI"
-        android:textSize="80"
+        android:text="@string/mbti"
+        android:textSize="80sp"
         android:textStyle="bold"
         android:visibility="visible"
-        tools:layout_editor_absoluteX="120dp"
-        tools:layout_editor_absoluteY="239dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/button"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:background="@color/teal_700"
         android:backgroundTintMode="add"
-        android:text="Регистрация"
+        android:text="@string/registration"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="#FFEB3B"
-        android:textSize="18"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:iconTint="#FFEB3B"
-        tools:layout_editor_absoluteX="126dp"
-        tools:layout_editor_absoluteY="588dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

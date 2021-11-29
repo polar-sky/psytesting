@@ -1,14 +1,16 @@
-package com.example.psytesting_mbti;
+package com.example.psytesting_mbti.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainWithAuth extends AppCompatActivity {
+import com.example.psytesting_mbti.R;
+
+public class TestPage2 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_with_auth);
+        setContentView(R.layout.activity_test_page2);
     }
 }
