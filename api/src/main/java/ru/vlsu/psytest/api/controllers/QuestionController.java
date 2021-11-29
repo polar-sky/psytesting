@@ -1,10 +1,12 @@
-package ru.vlsu.psytest.api.questions;
+package ru.vlsu.psytest.api.controllers;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.vlsu.psytest.api.questions.Question;
+import ru.vlsu.psytest.api.questions.QuestionService;
 
 import java.util.List;
 import java.util.NoSuchElementException;
