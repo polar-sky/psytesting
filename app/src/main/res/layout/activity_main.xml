@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
+    <include
+        android:id="@+id/toolbarTop"
+        layout="@layout/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <Button
         android:id="@+id/button4"
         style="@style/Widget.AppCompat.Button"
@@ -51,7 +57,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="92dp"
         android:text="@string/name_test"
         android:textSize="50sp"
         android:textStyle="bold"
