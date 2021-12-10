@@ -3,7 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/toolbar_main.xml" value="0.1390625" />
+        <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout-v21/toolbar.xml" value="0.23369565217391305" />
+        <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/activity_about_dev.xml" value="0.23369565217391305" />
+        <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/activity_custom_url.xml" value="0.23369565217391305" />
+        <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/activity_main.xml" value="0.23369565217391305" />
+        <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/toolbar.xml" value="0.27291666666666664" />
+        <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/toolbar_main.xml" value="0.25" />
+        <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/view_loader.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/User/Downloads/exercise1/exercise/app/src/main/res/layout/toolbar_main.xml" value="0.27291666666666664" />
       </map>
     </option>

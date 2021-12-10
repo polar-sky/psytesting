@@ -60,18 +60,13 @@ public class MainActivity extends AppCompatActivity {
                 .withHasStableIds(true)
                 .withAccountHeader(header)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("О приложении").withIcon(R.drawable.ic_dev).withIdentifier(10).withSelectable(false),
+                        new PrimaryDrawerItem().withName("О тесте").withIcon(R.drawable.ic_dev).withIdentifier(10).withSelectable(false),
 
-                        new SecondaryDrawerItem().withName("YouTube").withIcon(R.drawable.ic_youtube).withIdentifier(20).withSelectable(false),
-                        new SecondaryDrawerItem().withName("Facebook").withIcon(R.drawable.ic_facebook).withIdentifier(21).withSelectable(false),
-                        new SecondaryDrawerItem().withName("Twitter").withIcon(R.drawable.ic_twitter).withIdentifier(22).withSelectable(false),
-                        new SecondaryDrawerItem().withName("Google+").withIcon(R.drawable.ic_google_plus).withIdentifier(23).withSelectable(false),
+                        new SecondaryDrawerItem().withName("Пройти тест").withIcon(R.drawable.ic_youtube).withIdentifier(20).withSelectable(false),
+                        new SecondaryDrawerItem().withName("Статистика").withIcon(R.drawable.ic_facebook).withIdentifier(21).withSelectable(false),
 
                         new DividerDrawerItem(),
                         new SecondaryDrawerItem().withName("Настройки").withIcon(R.drawable.ic_settings).withIdentifier(30).withSelectable(false),
-                        new SecondaryDrawerItem().withName("Оцените приложение").withIcon(R.drawable.ic_rating).withIdentifier(31).withSelectable(false),
-                        new SecondaryDrawerItem().withName("Поделитесь").withIcon(R.drawable.ic_share).withIdentifier(32).withSelectable(false),
-                        new SecondaryDrawerItem().withName("Соглашения").withIcon(R.drawable.ic_privacy_policy).withIdentifier(33).withSelectable(false),
 
                         new DividerDrawerItem(),
                         new SecondaryDrawerItem().withName("Выход").withIcon(R.drawable.ic_exit).withIdentifier(40).withSelectable(false)
