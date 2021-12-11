@@ -1,7 +1,9 @@
 package info.fandroid.quizapp.quizapplication.activity;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -17,9 +19,13 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 import info.fandroid.quizapp.quizapplication.R;
+import info.fandroid.quizapp.quizapplication.utilities.ActivityUtilities;
 import info.fandroid.quizapp.quizapplication.utilities.AppUtilities;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
+
+    private Activity activity;
+    private Context context;
 
     private Toolbar toolbar;
 
@@ -33,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        activity = MainActivity.this;
+        context = getApplicationContext();
+
         final IProfile profile = new ProfileDrawerItem().withIcon(R.drawable.ic_dev);
 
         header = new AccountHeaderBuilder()
@@ -42,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
                 .withOnAccountHeaderProfileImageListener(new AccountHeader.OnAccountHeaderProfileImageListener() {
                     @Override
                     public boolean onProfileImageClick(View view, IProfile profile, boolean current) {
-                        // TODO: Invoke CustomUrlActivity
+                        ActivityUtilities.getInstance().invokeCustomUrlActivity(activity, CustomUrlActivity.class,
+                                getResources().getString(R.string.site), getResources().getString(R.string.site_url), false);
                         return false;
                     }
 
@@ -70,13 +80,26 @@ public class MainActivity extends AppCompatActivity {
 
                         new DividerDrawerItem(),
                         new SecondaryDrawerItem().withName("Выход").withIcon(R.drawable.ic_exit).withIdentifier(40).withSelectable(false)
-
-
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        //TODO Add invoke Drawer items Activity
+
+                        if (drawerItem != null) {
+                            Intent intent = null;
+                            if (drawerItem.getIdentifier() == 10) {
+                                ActivityUtilities.getInstance().invokeNewActivity(activity, AboutDevActivity.class, false);
+
+                            } else if (drawerItem.getIdentifier() == 20) {
+                                // TODO: invoke MainActivity
+                            } else if (drawerItem.getIdentifier() == 21) {
+                                // TODO: invoke StatisticActivity
+                            } else if (drawerItem.getIdentifier() == 30) {
+                                // TODO: invoke SettingActivity
+                            } else if (drawerItem.getIdentifier() == 40) {
+
+                            }
+                        }
 
                         return false;
                     }

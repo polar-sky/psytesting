@@ -1,6 +1,46 @@
 <resources>
-    <string name="app_name">Quiz Application</string>
-    <string name="tv_description">Проверь свои знания</string>
+    <string name="app_name">MBTI</string>
+    <string name="tv_description">Узнай свой тип личности</string>
 
     <string name="tap_again">Нажмите Назад еще раз для выхода</string>
+
+    <!-- app social site links section -->
+    <string name="facebook_url">https://www.facebook.com/pg/fandroidinfo/</string>
+    <string name="youtube_url">https://www.youtube.com/user/vitaxafication</string>
+    <string name="twitter_user_id">twitter://user?user_id=1329640969</string> <!-- find your user id from here: http://gettwitterid.com/  -->
+    <string name="twitter_url">https://twitter.com/nepochatoff</string>
+    <string name="google_plus_url">https://plus.google.com/u/0/+vitaxafication</string>
+
+    <!-- privacy policy url -->
+    <string name="privacy_url">https://docs.google.com/document/d/1ZUrFQwbxDTpg_o9UUx9NtH_JtOSmVuZqD2FTLBJ5qno/edit?usp=sharing</string>
+
+    <!-- privacy policy url -->
+    <string name="site_url">/</string>
+
+    <!-- about developer text  -->
+    <string name="developer_name">Fandroid.info</string>
+    <string name="developer_detail">Уроки по разработке приложений</string>
+    <string name="developer_message">Данное приложение является сборником тестов по андроид-программированию. Приложение можно использовать для проверки своих знаний и для подготовки к собеседованию. Это приложение создано в рамках Продвинутого курса по разработке android приложений. Больше информации о наших курсах смотрите на сайте Fandroid.info, YouTube-канале "Start Android" и наших страницах в социальных сетях</string>
+
+    <string name="site_menu_share">Поделиться</string>
+    <string name="quiz">Тестирование</string>
+    <string name="social">Ресурсы</string>
+    <string name="youtube">YouTube</string>
+    <string name="facebook">Facebook</string>
+    <string name="twitter">Twitter</string>
+    <string name="google_plus">Google Plus</string>
+
+    <string name="others">Others</string>
+    <string name="site">Fandroid.info</string>
+    <string name="privacy">Privacy Policy</string>
+    <string name="share">Поделиться</string>
+    <string name="rate">Оцените приложение</string>
+    <string name="settings">Настройки</string>
+    <string name="about_dev">О приложении</string>
+    <string name="exit">Выход</string>
+    <string name="site_menu_delete_all">Удалить все</string>
+    <string name="About">Типология личности Майерс-Бриггс создана на базе типологии Карла Густава Юнга в 1940-х годах двумя американками, Изабель Майерс и Кэтрин Бриггс. На её основе была разработана система психологического тестирования MBTI (Myers-Briggs Type Indicator), относящая людей к одному из 16 типов. Несмотря на недостаточное научное обоснование, система получила широкое практическое распространение и коммерческую успешность в западных странах.</string>
+    <string name="nameOfTest">Определитель Юнгианского типа</string>
+    <string name="mbti">MBTI</string>
+
 </resources>
