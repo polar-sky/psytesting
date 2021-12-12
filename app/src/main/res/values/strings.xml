@@ -43,4 +43,64 @@
     <string name="nameOfTest">Определитель Юнгианского типа</string>
     <string name="mbti">MBTI</string>
 
+    <string name="close_prompt">Закрыть приложение?</string>
+    <string name="delete_all_notification">Удалить все уведомления?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="failed">Ошибка</string>
+
+    <string name="score_card">Результаты</string>
+    <string name="score">Верно</string>
+    <string name="wrong">Неверно</string>
+    <string name="skipped">Пропущено</string>
+    <string name="skip_text">Пропустить?</string>
+    <string name="skip_prompt">Пропустить этот вопрос?</string>
+    <string name="quiz_close_prompt">Закрыть приложение?</string>
+    <string name="share_prompt">Поделитесь результатом!</string>
+    <string name="share_now">Поделиться</string>
+    <string name="sharing_text" formatted="false">Мой результат %d. Проверь себя - </string>
+    <string name="play_again">Начать заново</string>
+    <string name="your_ans">Ваш ответ:</string>
+    <string name="correct_ans">Верный ответ:</string>
+
+    <string name="details_text">Подробно</string>
+    <string name="next_question">Следующий вопрос</string>
+    <string name="skipped_text">Вы пропустили этот вопрос</string>
+    <string name="item_counter" formatted="false">%d / %d</string>
+    <string name="no_internet">Интернет соединение недоступно!</string>
+    <string name="welcome_text">Проверьте ваши знания!</string>
+    <string name="ready_prompt">Вы готовы?</string>
+    <string name="quiz_prompt">Тестирование</string>
+    <string name="cancel_prompt">Прекратить тестирование?</string>
+    <string name="watch_video_prompt">Посмотрите видео для продолжения теста!</string>
+    <string name="reward_dialog_title">Еще один шанс?</string>
+    <string name="reward_dialog_message">Получить дополнительную попытку после просмотра видео?</string>
+
+    <string name="greeting_text1">Плохо. Подготовьтесь и пробуйте снова.</string>
+    <string name="greeting_text2">Хорошо. Но могло быть еще лучше.</string>
+    <string name="greeting_text3">Великолепно! Отличный результат!</string>
+
+
+    <string name="matches">matches</string>
+    <string name="title_post">Уведомление</string>
+    <string name="notifications">Уведомления</string>
+    <string name="read_post">Нажмите для прочтения</string>
+    <string name="notification_title">Заголовок: </string>
+    <string name="notification_details">Содержание: </string>
+
+
+    <string name="pref_notification_title">Настройка уведомлений</string>
+    <string name="pref_notification_summ">Включить/выключить уведомления</string>
+    <string name="pref_zoom_title">Zoom Controller</string>
+    <string name="pref_zoom_summ">Enable zoom controller to zoom in/out pages</string>
+    <string name="pref_text_title">Размер текста</string>
+    <string name="select_size">Выберите размер текста</string>
+
+    <string name="small_text">Маленький</string>
+    <string name="default_text">Средний</string>
+    <string name="large_text">Большой</string>
+    <string name="quiz_promt_third_text">Пройти тест снова?</string>
+    <string name="quiz_promt_first_text">Предыдущий результат: %s из %s</string>
+    <string name="quiz_question_title">Вопрос %d из %d</string>
+
 </resources>

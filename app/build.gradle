@@ -28,4 +28,5 @@ dependencies {
     implementation("com.mikepenz:materialdrawer:6.0.8@aar") {
         transitive = true
     }
+    implementation 'com.android.support:cardview-v7:27.1.1'
 }

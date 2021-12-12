@@ -33,4 +33,13 @@ public class ActivityUtilities {
             activity.finish();
         }
     }
+
+    public void invokeCommonQuizActivity(Activity activity, Class<?> tClass, String categoryId, boolean shouldFinish) {
+        Intent intent = new Intent(activity, tClass);
+        intent.putExtra(AppConstants.BUNDLE_KEY_INDEX, categoryId);
+        activity.startActivity(intent);
+        if (shouldFinish) {
+            activity.finish();
+        }
+    }
 }

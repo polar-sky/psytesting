@@ -26,7 +26,7 @@ public class BaseActivity extends AppCompatActivity {
         context = activity.getApplicationContext();
     }
 
-    public void ininToolbar(boolean isTitleEnabled) {
+    public void initToolbar(boolean isTitleEnabled) {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(isTitleEnabled);

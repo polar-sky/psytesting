@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import info.fandroid.quizapp.quizapplication.R;
 import info.fandroid.quizapp.quizapplication.adapters.CategoryAdapter;
 import info.fandroid.quizapp.quizapplication.constants.AppConstants;
+import info.fandroid.quizapp.quizapplication.listeners.ListItemClickListener;
 import info.fandroid.quizapp.quizapplication.models.quiz.CategoryModel;
 import info.fandroid.quizapp.quizapplication.utilities.ActivityUtilities;
 import info.fandroid.quizapp.quizapplication.utilities.AppUtilities;
@@ -194,5 +195,19 @@ public class MainActivity extends BaseActivity {
         }
         hideLoader();
         adapter.notifyDataSetChanged();
+    }
+
+
+    private void initListener() {
+
+        // recycler list item click listener
+        adapter.setItemClickListener(new ListItemClickListener() {
+            @Override
+            public void onItemClick(int position, View view) {
+
+                CategoryModel model = categoryList.get(position);
+                ActivityUtilities.getInstance().invokeCommonQuizActivity(activity, QuizPromptActivity.class, model.getCategoryId(), true);
+            }
+        });
     }
 }
