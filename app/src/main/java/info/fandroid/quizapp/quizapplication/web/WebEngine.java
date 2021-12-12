@@ -31,7 +31,7 @@ public class WebEngine {
 
     public void initWebView() {
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setAppCacheMaxSize(AppConstants.SITE_CASHE_SIZE);
+        webView.getSettings().setAppCacheMaxSize(AppConstants.SITE_CACHE_SIZE);
         webView.getSettings().setAppCachePath(context.getCacheDir().getAbsolutePath());
         webView.getSettings().setAllowFileAccess(true);
         webView.getSettings().setAppCacheEnabled(true);
