@@ -73,6 +73,7 @@ public class MainActivity extends BaseActivity {
 
         initLoader();
         loadData();
+        initListener();
 
         final IProfile profile = new ProfileDrawerItem().withIcon(R.drawable.ic_dev);
 
