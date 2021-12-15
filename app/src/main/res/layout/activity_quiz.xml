@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbarTop"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbarTop"
+        android:paddingStart="15dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="15dp">
+
+
+        <TextView
+            android:id="@+id/tvQuestionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:lineSpacingMultiplier="1.1"
+            android:textSize="17sp"
+            tools:text="@string/quiz_question_title" />
+
+        <TextView
+            android:id="@+id/tvQuestionText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvQuestionTitle"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:lineSpacingMultiplier="1.1"
+            android:textSize="17sp"
+            tools:text="@string/quiz_prompt" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvQuiz"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/btnNext"
+            android:layout_below="@id/tvQuestionText"
+            android:scrollbars="vertical" />
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="@string/next_question" />
+
+        <include layout="@layout/view_loader" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
