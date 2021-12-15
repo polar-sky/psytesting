@@ -79,11 +79,9 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(QuizAdapter.ViewHolder mainHolder, int position) {
         final String model = mItemList.get(position);
-        final String model1 = mColorList.get(position);
 
         // setting data over views
         mainHolder.tvItemTitle.setText(Html.fromHtml(model));
-        mainHolder.tvItemTitle.setBackgroundResource(mActivity.getResources().getIdentifier(model1, "drawable", mActivity.getPackageName()));
 
     }
 }

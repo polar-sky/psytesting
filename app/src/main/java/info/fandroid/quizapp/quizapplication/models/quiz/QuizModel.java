@@ -8,24 +8,17 @@ import java.util.ArrayList;
 public class QuizModel implements Parcelable {
     String question;
     ArrayList<String> answers;
-    int correctAnswer;
     String questinCategoryId;
     ArrayList<String> backgroundColors;
 
-    public QuizModel(String question, ArrayList<String> answers, int correctAnswer, String questinCategoryId, ArrayList<String> backgroundColors) {
+    public QuizModel(String question, ArrayList<String> answers, String questinCategoryId) {
         this.question = question;
-        this.correctAnswer = correctAnswer;
         this.answers = answers;
         this.questinCategoryId = questinCategoryId;
-        this.backgroundColors = backgroundColors;
     }
 
     public String getQuestion() {
         return question;
-    }
-
-    public int getCorrectAnswer() {
-        return correctAnswer;
     }
 
     public ArrayList<String> getAnswers() {
@@ -34,14 +27,6 @@ public class QuizModel implements Parcelable {
 
     public String getQuestingCategoryId() {
         return questinCategoryId;
-    }
-
-    public void setBackgroundColors(ArrayList<String> backgroundColors) {
-        this.backgroundColors = backgroundColors;
-    }
-
-    public ArrayList<String> getBackgroundColors() {
-        return backgroundColors;
     }
 
     @Override
@@ -53,7 +38,6 @@ public class QuizModel implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(question);
         dest.writeList(answers);
-        dest.writeInt(correctAnswer);
         dest.writeString(questinCategoryId);
         dest.writeList(backgroundColors);
     }
@@ -61,7 +45,6 @@ public class QuizModel implements Parcelable {
     protected QuizModel(Parcel in) {
         question = in.readString();
         in.readList(answers, QuizModel.class.getClassLoader());
-        correctAnswer = in.readInt();
         questinCategoryId = in.readString();
         in.readList(backgroundColors, QuizModel.class.getClassLoader());
     }

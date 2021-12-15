@@ -22,7 +22,7 @@
         </activity>
         <activity android:name=".activity.BaseActivity" />
         <activity android:name=".activity.CustomUrlActivity" />
-        <activity android:name=".activity.AboutDevActivity" />
+        <activity android:name=".activity.AboutDevActivity"></activity>
         <activity
             android:name="info.fandroid.quizapp.quizapplication.activity.QuizPromptActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize"
