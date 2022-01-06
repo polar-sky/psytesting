@@ -71,17 +71,13 @@ public class RegActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Toast toast = Toast.makeText(getApplicationContext(),
-                                "САСАЛЕХ", Toast.LENGTH_SHORT);
+                                "Вы зарегистрированы", Toast.LENGTH_SHORT);
                         goToLoginActivity();
                         toast.show();
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                //Log.e("Response error", "" + error);
-                //Toast toast = Toast.makeText(getApplicationContext(),
-                //        getResources().getString(R.string.reg_fail), Toast.LENGTH_SHORT);
-                //toast.show();
             }
         }) {
             @Override
