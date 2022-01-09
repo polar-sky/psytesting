@@ -109,10 +109,5 @@
     <string name="invalid_password">Пароль должен быть больше 5 символов</string>
     <string name="login_failed">"Login failed"</string>
 
-    <string name="answer1">Идет получение ответа...</string>
-    <string name="answer2">Идет получение ответа...</string>
-    <string name="answer3">Идет получение ответа...</string>
-    <string name="answer4">Идет получение ответа...</string>
-    <string name="answer5">Идет получение ответа...</string>
-
+    <string name="answer">Идет получение ответа...</string>
 </resources>
