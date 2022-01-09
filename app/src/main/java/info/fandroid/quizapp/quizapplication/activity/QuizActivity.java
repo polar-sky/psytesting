@@ -3,303 +3,284 @@ package info.fandroid.quizapp.quizapplication.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.text.Html;
+import android.os.Handler;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import info.fandroid.quizapp.quizapplication.R;
-import info.fandroid.quizapp.quizapplication.adapters.QuizAdapter;
-import info.fandroid.quizapp.quizapplication.constants.AppConstants;
-import info.fandroid.quizapp.quizapplication.data.preference.AppPreference;
-import info.fandroid.quizapp.quizapplication.listeners.ListItemClickListener;
-import info.fandroid.quizapp.quizapplication.models.quiz.QuizModel;
-import info.fandroid.quizapp.quizapplication.utilities.ActivityUtilities;
-import info.fandroid.quizapp.quizapplication.utilities.BeatBox;
-import info.fandroid.quizapp.quizapplication.utilities.DialogUtilities;
-import info.fandroid.quizapp.quizapplication.utilities.SoundUtilities;
+import info.fandroid.quizapp.quizapplication.json.Answers;
+import info.fandroid.quizapp.quizapplication.json.Questions;
 
 
-public class QuizActivity extends BaseActivity implements  DialogUtilities.OnCompleteListener {
+public class QuizActivity extends BaseActivity {
 
     private Activity mActivity;
     private Context mContext;
-    private ImageButton btnSpeaker;
-    private Button btnNext;
-    private RecyclerView mRecyclerQuiz;
     private TextView tvQuestionText;
     private TextView tvQuestionTitle;
-    private ImageView imgFirstLife, imgSecondLife, imgThirdLife, imgFourthLife, imgFifthLife;
-
-    private QuizAdapter mAdapter = null;
-    private List<QuizModel> mItemList;
-    ArrayList<String> mOptionList;
-    ArrayList<String> mBackgroundColorList;
-
-    private int mQuestionPosition = 0;
-    private int mQuestionsCount = 0;
-    private int mScore = 0, mWrongAns = 0, mSkip = 0;
-    private boolean mUserHasPressed = false;
-    private boolean mIsSkipped = false;
-    private String mQuestionText, mGivenAnsText,  mCategoryId;
-
-    private BeatBox mBeatBox;
-    private List<SoundUtilities> mSounds;
-    private boolean isSoundOn;
+    private Button answerBtn5;
+    private Button answerBtn4;
+    private Button answerBtn3;
+    private Button answerBtn2;
+    private Button answerBtn1;
+    private String token;
+    private List<Questions> questionList = new ArrayList<>();
+    private Questions currentQuestion = new Questions();
+    private boolean running;
+    private int seconds;
+    private String isAuth;
 
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //TODO: initializeRewardedAds();
-        //TODO: loadRewardedVideoAds();
-
-        initVar();
-        initView();
-        loadData();
-        initListener();
-
-
-    }
-
-    private void initVar() {
-        mActivity = QuizActivity.this;
-        mContext = mActivity.getApplicationContext();
-
-        Intent intent = getIntent();
-        if (intent != null) {
-            mCategoryId = intent.getStringExtra(AppConstants.BUNDLE_KEY_INDEX);
-        }
-
-        mItemList = new ArrayList<>();
-        mOptionList = new ArrayList<>();
-        mBackgroundColorList = new ArrayList<>();
-        //TODO: mResultList = new ArrayList<>();
-    }
-
-    private void initView() {
         setContentView(R.layout.activity_quiz);
-
-        btnNext = (Button) findViewById(R.id.btnNext);
-
+        Intent intent = getIntent();
+        token = intent.getStringExtra("token_key");
+        isAuth = intent.getStringExtra("isAuth");
+        runTimer();
+        running = true;
         tvQuestionText = (TextView) findViewById(R.id.tvQuestionText);
         tvQuestionTitle = (TextView) findViewById(R.id.tvQuestionTitle);
-
-        mRecyclerQuiz = (RecyclerView) findViewById(R.id.rvQuiz);
-        mRecyclerQuiz.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-
-        mAdapter = new QuizAdapter(mContext, mActivity, mOptionList, mBackgroundColorList);
-        mRecyclerQuiz.setAdapter(mAdapter);
-
-        initToolbar(true);
-        setToolbarTitle(getString(R.string.quiz));
-        enableUpButton();
-        initLoader();
-
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private void loadData() {
-        showLoader();
-
-        loadJson();
-    }
-
-    public void initListener() {
-
-        btnNext.setOnClickListener(new View.OnClickListener() {
+        answerBtn1 = (Button) findViewById(R.id.answerBtn1);
+        answerBtn2 = (Button) findViewById(R.id.answerBtn2);
+        answerBtn3 = (Button) findViewById(R.id.answerBtn3);
+        answerBtn4 = (Button) findViewById(R.id.answerBtn4);
+        answerBtn5 = (Button) findViewById(R.id.answerBtn5);
+        getAnswers();
+        View.OnClickListener ButtonClickListener = new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                if (!mUserHasPressed) {
-                    FragmentManager manager = getSupportFragmentManager();
-                    DialogUtilities dialog = DialogUtilities.newInstance(getString(R.string.skip_text), getString(R.string.skip_prompt), getString(R.string.yes), getString(R.string.no), AppConstants.BUNDLE_KEY_SKIP_OPTION);
-                    dialog.show(manager, AppConstants.BUNDLE_KEY_DIALOG_FRAGMENT);
-                } else {
-                    //TODO: updateResultSet();
-                    setNextQuestion();
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.answerBtn1:
+                        answer(1);
+                        break;
+                    case R.id.answerBtn2:
+                        answer(2);
+                        break;
+                    case R.id.answerBtn3:
+                        answer(3);
+                        break;
+                    case R.id.answerBtn4:
+                        answer(4);
+                        break;
+                    case R.id.answerBtn5:
+                        answer(5);
+                        break;
                 }
             }
-        });
+        };
+        answerBtn1.setOnClickListener(ButtonClickListener);
+        answerBtn2.setOnClickListener(ButtonClickListener);
+        answerBtn3.setOnClickListener(ButtonClickListener);
+        answerBtn4.setOnClickListener(ButtonClickListener);
+        answerBtn5.setOnClickListener(ButtonClickListener);
+    }
 
-        mAdapter.setItemClickListener(new ListItemClickListener() {
-            @Override
-            public void onItemClick(int position, View view) {
-                if (!mUserHasPressed) {
-                    int clickedAnswerIndex = position;
-
-                        for (int currentItemIndex = 0; currentItemIndex < mOptionList.size(); currentItemIndex++) {
-
-                                mScore++;
-                                ((LinearLayoutManager) mRecyclerQuiz.getLayoutManager()).scrollToPosition(currentItemIndex);
+    public void getAnswers () {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = getResources().getString(R.string.URL) + "/api/test/answers";
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("answers");
+                            for (int i = 0; i<jsonArray.length();i++) {
+                                Answers answers = new Answers();
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                answers.setAnswerText(jsonObject.getString("answerText"));
+                                answers.setNumber(jsonObject.getInt("number"));
+                                switch (answers.getNumber()) {
+                                    case 1:
+                                        answerBtn1.setText(answers.getAnswerText());
+                                        break;
+                                    case 2:
+                                        answerBtn2.setText(answers.getAnswerText());
+                                        break;
+                                    case 3:
+                                        answerBtn3.setText(answers.getAnswerText());
+                                        break;
+                                    case 4:
+                                        answerBtn4.setText(answers.getAnswerText());
+                                        break;
+                                    case 5:
+                                        answerBtn5.setText(answers.getAnswerText());
+                                        break;
+                                }
+                                getQuestion();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-
-                    mGivenAnsText = mItemList.get(mQuestionPosition).getAnswers().get(clickedAnswerIndex);
-
-                    mUserHasPressed = true;
-                    mAdapter.notifyDataSetChanged();
-                }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                tvQuestionText.setText("That didn't work!");
             }
-
         });
-
+        queue.add(stringRequest);
     }
-
-
-
-    public void setNextQuestion() {
-        if (isSoundOn) {
-            mBeatBox.play(mSounds.get(AppConstants.BUNDLE_KEY_FIRST_INDEX));
+    public void getQuestion() {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = getResources().getString(R.string.URL) + "/api/test/questions";
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url,
+                null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray jsonArray = response.getJSONArray("questions");
+                    for (int i = 0; i<jsonArray.length();i++) {
+                        Questions questions = new Questions();
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        questions.setQuestionText(jsonObject.getString(
+                                "questionText"
+                        ));
+                        questions.setNumber(jsonObject.getInt("number"));
+                        questions.setId(jsonObject.getInt("id"));
+                        addQuestionInQuestions(questions);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                tvQuestionText.setText("That didn't work!");
+            }
+        });
+        queue.add(stringRequest);
+    }
+    private void addQuestionInQuestions(Questions questions) {
+        questionList.add(questions);
+        if (questions.getNumber() == 32) {
+            setQuestionText(questionList, 0);
+            tvQuestionTitle.setText("1/32");
         }
-        mUserHasPressed = false;
-        if (mQuestionPosition < mItemList.size() - 1 ) {
-            mQuestionPosition++;
-            updateQuestionsAndAnswers();
-        } else if (mQuestionPosition < mItemList.size() - 1 ) {
-            FragmentManager manager = getSupportFragmentManager();
-            DialogUtilities dialog = DialogUtilities.newInstance(getString(R.string.reward_dialog_title), getString(R.string.reward_dialog_message), getString(R.string.yes), getString(R.string.no), AppConstants.BUNDLE_KEY_REWARD_OPTION);
-            dialog.show(manager, AppConstants.BUNDLE_KEY_DIALOG_FRAGMENT);
+    }
+    private void setQuestionText(List<Questions> questionList, int currentQuestionNumber) {
+        if (currentQuestionNumber == 25) {
+            finishAttempt();
         } else {
-            //TODO: invoke ScoreCardActivity
+            Questions jsonQuestionInThisMethod = questionList.get(currentQuestionNumber);
+            currentQuestion.setId(jsonQuestionInThisMethod.getId());
+            currentQuestion.setNumber(jsonQuestionInThisMethod.getNumber());
+            currentQuestion.setQuestionText(jsonQuestionInThisMethod.getQuestionText());
+            tvQuestionText.setText(jsonQuestionInThisMethod.getQuestionText());
+            tvQuestionTitle.setText(jsonQuestionInThisMethod.getId() + "/32");
         }
     }
-
-    public void updateQuestionsAndAnswers() {
-        mOptionList.clear();
-        ((LinearLayoutManager) mRecyclerQuiz.getLayoutManager()).scrollToPosition(AppConstants.BUNDLE_KEY_ZERO_INDEX);
-
-        mOptionList.addAll(mItemList.get(mQuestionPosition).getAnswers());
-        mAdapter.notifyDataSetChanged();
-
-        mQuestionText = mItemList.get(mQuestionPosition).getQuestion();
-
-        tvQuestionText.setText(Html.fromHtml(mQuestionText));
-        tvQuestionTitle.setText(getString(R.string.quiz_question_title, mQuestionPosition + 1, mQuestionsCount));
-    }
-
-    public void quizActivityClosePrompt() {
-        FragmentManager manager = getSupportFragmentManager();
-        DialogUtilities dialog = DialogUtilities.newInstance(getString(R.string.exit), getString(R.string.cancel_prompt), getString(R.string.yes), getString(R.string.no), AppConstants.BUNDLE_KEY_CLOSE_OPTION);
-        dialog.show(manager, AppConstants.BUNDLE_KEY_DIALOG_FRAGMENT);
-    }
-
-    private void loadJson() {
-        StringBuffer sb = new StringBuffer();
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new InputStreamReader(getAssets().open(AppConstants.QUESTION_FILE)));
-            String temp;
-            while ((temp = br.readLine()) != null)
-                sb.append(temp);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                br.close();
-            } catch (Exception e) {
-                e.printStackTrace();
+    public void answer(int numberButton) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        Map params = new HashMap();
+        params.put("idA", numberButton);
+        params.put("idQ", Long.toString(currentQuestion.getId()));
+        String URL =  getResources().getString(R.string.URL) + "/api/test/giveAnswer";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,URL,
+                new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        if (!response.equals(null)) {
+                            setQuestionText(questionList,currentQuestion.getId());
+                        } else {
+                            Log.e("Your Array Response", "Data Null");
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("error is ", "" + error);
             }
-        }
-        parseJson(sb.toString());
+        }) {
+            @Override
+            public Map getHeaders() throws AuthFailureError {
+                Map params = new HashMap();
+                params.put("Authorization", "Bearer "+ token);
+                return params;
+            }
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+        };
+        requestQueue.add(request);
+    }
+    public void finishAttempt() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        Map params = new HashMap();
+        String URL =  getResources().getString(R.string.URL) + "/api/test/finishAttempt";
+        /*JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,URL,
+                new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            getResultRequest(response.getLong("id"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("error is ", "" + error);
+            }
+        }) {
+            @Override
+            public Map getHeaders() throws AuthFailureError {
+                Map params = new HashMap();
+                params.put("Authorization", "Bearer "+ token);
+                return params;
+            }
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+        };
+        requestQueue.add(request);*/
     }
 
-    public void parseJson(String jsonData) {
-        try {
-
-            JSONObject jsonObjMain = new JSONObject(jsonData);
-            JSONArray jsonArray = jsonObjMain.getJSONArray(AppConstants.JSON_KEY_QUESTIONNAIRY);
-
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObj = jsonArray.getJSONObject(i);
-
-                String question = jsonObj.getString(AppConstants.JSON_KEY_QUESTION);
-                String categoryId = jsonObj.getString(AppConstants.JSON_KEY_CATEGORY_ID);
-
-                Log.d("TAG", categoryId.toString());
-
-                JSONArray jsonArray2 = jsonObj.getJSONArray(AppConstants.JSON_KEY_ANSWERS);
-                ArrayList<String> contents = new ArrayList<>();
-                for (int j = 0; j < jsonArray2.length(); j++) {
-                    String item_title = jsonArray2.get(j).toString();
-                    contents.add(item_title);
+    private void runTimer() {
+        final TextView textViewTimer = (TextView) findViewById(R.id.tvTimer);
+        final Handler handler = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                int minutes = (seconds%3600)/60;
+                int secon = seconds%60;
+                String time = String.format("%02d:%02d", minutes, secon);
+                textViewTimer.setText(time);
+                if (running) {
+                    seconds++;
+                    handler.postDelayed(this, 1000);
                 }
-                if (mCategoryId.equals(categoryId)) {
-                    mItemList.add(new QuizModel(question, contents, categoryId));
-                }
             }
-
-            mQuestionsCount = mItemList.size();
-            Collections.shuffle(mItemList);
-
-            hideLoader();
-            updateQuestionsAndAnswers();
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-            showEmptyView();
-        }
+        });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                quizActivityClosePrompt();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
-    @Override
-    public void onBackPressed() {
-        quizActivityClosePrompt();
-    }
-
-    @Override
-    public void onComplete(Boolean isOkPressed, String viewIdText) {
-        if (isOkPressed) {
-            if (viewIdText.equals(AppConstants.BUNDLE_KEY_CLOSE_OPTION)) {
-                ActivityUtilities.getInstance().invokeNewActivity(mActivity, MainActivity.class, true);
-            } else if (viewIdText.equals(AppConstants.BUNDLE_KEY_SKIP_OPTION)) {
-                mSkip++;
-                //TODO: mIsSkipped = true;
-                mGivenAnsText = getResources().getString(R.string.skipped_text);
-                //TODO: updateResultSet();
-                setNextQuestion();
-            } else if (viewIdText.equals(AppConstants.BUNDLE_KEY_REWARD_OPTION)) {
-                //TODO:  mRewardedVideoAd.show();
-            }
-        } else if (!isOkPressed && viewIdText.equals(AppConstants.BUNDLE_KEY_REWARD_OPTION)) {
-            //TODO: invoke ScoreCardActivity
-            AppPreference.getInstance(mContext).setQuizResult(mCategoryId, mScore);
-            AppPreference.getInstance(mContext).setQuizQuestionsCount(mCategoryId, mQuestionsCount);
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 }

@@ -24,7 +24,7 @@
 
         <TextView
             android:id="@+id/tvQuestionTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
@@ -33,32 +33,63 @@
             tools:text="@string/quiz_question_title" />
 
         <TextView
+            android:id="@+id/tvTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvQuestionTitle"
+            android:textSize="17sp"
+            tools:text="00:00" />
+
+        <TextView
             android:id="@+id/tvQuestionText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvQuestionTitle"
+            android:layout_below="@id/tvTimer"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
             android:lineSpacingMultiplier="1.1"
             android:textSize="17sp"
             tools:text="@string/quiz_prompt" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvQuiz"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/btnNext"
-            android:layout_below="@id/tvQuestionText"
-            android:scrollbars="vertical" />
-
         <Button
-            android:id="@+id/btnNext"
+            android:id="@+id/answerBtn1"
+            android:layout_below="@id/tvQuestionText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
-            android:text="@string/next_question" />
+            android:text="@string/answer7" />
+
+        <Button
+            android:id="@+id/answerBtn2"
+            android:layout_below="@id/answerBtn1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/answer7" />
+
+        <Button
+            android:id="@+id/answerBtn3"
+            android:layout_below="@id/answerBtn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/answer7" />
+
+        <Button
+            android:id="@+id/answerBtn4"
+            android:layout_below="@id/answerBtn3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/answer7" />
+
+        <Button
+            android:id="@+id/answerBtn5"
+            android:layout_below="@id/answerBtn4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/answer7" />
 
         <include layout="@layout/view_loader" />
 
