@@ -70,7 +70,7 @@ public class RegActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Toast toast = Toast.makeText(getApplicationContext(),
-                                "Зарегистрировано", Toast.LENGTH_SHORT);
+                                "Вы зарегистрированы", Toast.LENGTH_SHORT);
                         goToLoginActivity();
                         toast.show();
                     }
