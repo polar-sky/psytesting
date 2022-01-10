@@ -145,7 +145,7 @@ public class QuizActivity extends BaseActivity {
     }
     public void getQuestion() {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = getResources().getString(R.string.URL) + "/api/test/questions";
+        String url = getResources().getString(R.string.URL) + "/questions";
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url,
                 null, new Response.Listener<JSONObject>() {
             @Override
@@ -156,9 +156,9 @@ public class QuizActivity extends BaseActivity {
                         Questions questions = new Questions();
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         questions.setQuestionText(jsonObject.getString(
-                                "questionText"
+                                "text1"
                         ));
-                        questions.setNumber(jsonObject.getInt("number"));
+                        questions.setType(jsonObject.getString("type"));
                         questions.setId(jsonObject.getInt("id"));
                         addQuestionInQuestions(questions);
                     }
@@ -176,18 +176,18 @@ public class QuizActivity extends BaseActivity {
     }
     private void addQuestionInQuestions(Questions questions) {
         questionList.add(questions);
-        if (questions.getNumber() == 32) {
+        if (questions.getId() == 32) {
             setQuestionText(questionList, 0);
             tvQuestionTitle.setText("1/32");
         }
     }
     private void setQuestionText(List<Questions> questionList, int currentQuestionNumber) {
-        if (currentQuestionNumber == 25) {
+        if (currentQuestionNumber == 32) {
             finishAttempt();
         } else {
             Questions jsonQuestionInThisMethod = questionList.get(currentQuestionNumber);
             currentQuestion.setId(jsonQuestionInThisMethod.getId());
-            currentQuestion.setNumber(jsonQuestionInThisMethod.getNumber());
+            currentQuestion.setType(jsonQuestionInThisMethod.getType());
             currentQuestion.setQuestionText(jsonQuestionInThisMethod.getQuestionText());
             tvQuestionText.setText(jsonQuestionInThisMethod.getQuestionText());
             tvQuestionTitle.setText(jsonQuestionInThisMethod.getId() + "/32");

@@ -96,7 +96,7 @@
     <string name="large_text">Большой</string>
     <string name="quiz_promt_third_text">Пройти тест снова?</string>
     <string name="quiz_promt_first_text">Предыдущий результат: %s из %s</string>
-    <string name="quiz_question_title">Вопрос %d из %d</string>
+    <string name="quiz_question_title">Вопрос */*</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_username">Логин</string>
     <string name="prompt_email">Email</string>

@@ -2,18 +2,18 @@ package info.fandroid.quizapp.quizapplication.json;
 
 public class Questions {
     private int id;
-    private int number;
+    private String type;
     private String questionText;
 
     public Questions() {
     }
 
-    public int getNumber() {
-        return number;
+    public String getType() {
+        return type;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getQuestionText() {
