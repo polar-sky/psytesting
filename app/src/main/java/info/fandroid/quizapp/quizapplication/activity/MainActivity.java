@@ -51,6 +51,9 @@ public class MainActivity extends BaseActivity {
     private CategoryAdapter adapter = null;
     private RecyclerView recyclerView;
 
+    private String token;
+    private String isAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +77,10 @@ public class MainActivity extends BaseActivity {
         initLoader();
         loadData();
         initListener();
+
+        //получаем ебучий токен
+        Bundle arguments = getIntent().getExtras();
+        token = arguments.get("token_key").toString();
 
         final IProfile profile = new ProfileDrawerItem().withIcon(R.drawable.ic_dev);
 
@@ -207,8 +214,17 @@ public class MainActivity extends BaseActivity {
             public void onItemClick(int position, View view) {
 
                 CategoryModel model = categoryList.get(position);
-                ActivityUtilities.getInstance().invokeCommonQuizActivity(activity, QuizPromptActivity.class, model.getCategoryId(), true);
+                goToQuizPromptActivity(token);
+                //ActivityUtilities.getInstance().invokeCommonQuizActivity(activity, QuizPromptActivity.class, model.getCategoryId(), true);
+
             }
         });
+    }
+
+    public void goToQuizPromptActivity(String string) {
+        Intent main = new Intent(this, QuizPromptActivity.class);
+        main.putExtra("token_key", string);
+        startActivity(main);
+        finish();
     }
 }

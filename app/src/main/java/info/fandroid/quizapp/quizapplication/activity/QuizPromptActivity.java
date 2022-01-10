@@ -4,10 +4,22 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import info.fandroid.quizapp.quizapplication.R;
 import info.fandroid.quizapp.quizapplication.constants.AppConstants;
@@ -22,6 +34,8 @@ public class QuizPromptActivity extends BaseActivity {
     private Button mBtnYes, mBtnNo;
     private TextView firstText, thirdtext;
     private String categoryId, score, questionsCount;
+    private String token;
+    private String isAuth;
     //private String questionsCount = "";
 
 
@@ -32,6 +46,14 @@ public class QuizPromptActivity extends BaseActivity {
         initVar();
         initView();
         initListener();
+        Intent intent = getIntent();
+        //token = intent.getStringExtra("token_key");
+        //isAuth = intent.getStringExtra("isAuth");
+
+        //получаем ебучий токен
+        Bundle arguments = getIntent().getExtras();
+        token = arguments.get("token_key").toString();
+        //isAuth = arguments.get("isAuth").toString();
     }
 
     private void initVar() {
@@ -72,7 +94,8 @@ public class QuizPromptActivity extends BaseActivity {
         mBtnYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ActivityUtilities.getInstance().invokeCommonQuizActivity(mActivity, QuizActivity.class, categoryId, true);
+                goToTestActivity(isAuth);
+                //ActivityUtilities.getInstance().invokeCommonQuizActivity(mActivity, QuizActivity.class, categoryId, true);
             }
         });
         mBtnNo.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +121,35 @@ public class QuizPromptActivity extends BaseActivity {
         ActivityUtilities.getInstance().invokeNewActivity(mActivity, MainActivity.class, true);
     }
 
+    public void goToTestActivity(String isAuth) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        String URL =  getResources().getString(R.string.URL) + "/api/test/startAttempt";
+        StringRequest request = new StringRequest(Request.Method.POST, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
 
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("error is ", "" + error);
+            }
+        }) {
+            @Override
+            public Map getHeaders() throws AuthFailureError {
+                Map params = new HashMap();
+                params.put("Authorization", "Bearer "+ token);
+                return params;
+            }
+        };
+        requestQueue.add(request);
+
+        Intent test = new Intent(this, QuizActivity.class);
+        test.putExtra("token_key", token);
+        test.putExtra("isAuth", isAuth);
+        startActivity(test);
+    }
 
 }

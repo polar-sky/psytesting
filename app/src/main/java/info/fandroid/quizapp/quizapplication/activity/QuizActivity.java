@@ -34,6 +34,8 @@ import info.fandroid.quizapp.quizapplication.json.Questions;
 
 public class QuizActivity extends BaseActivity {
 
+    private int JP;
+
     private Activity mActivity;
     private Context mContext;
     private TextView tvQuestionText;
@@ -50,14 +52,19 @@ public class QuizActivity extends BaseActivity {
     private int seconds;
     private String isAuth;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         Intent intent = getIntent();
-        token = intent.getStringExtra("token_key");
-        isAuth = intent.getStringExtra("isAuth");
+        //token = intent.getStringExtra("token_key");
+        //isAuth = intent.getStringExtra("isAuth");\
+
+        //TOKEN BLYAT
+        Bundle arguments = getIntent().getExtras();
+        token = arguments.get("token_key").toString();
+        //isAuth = arguments.get("isAuth").toString();
+
         runTimer();
         running = true;
         tvQuestionText = (TextView) findViewById(R.id.tvQuestionText);
@@ -67,7 +74,7 @@ public class QuizActivity extends BaseActivity {
         answerBtn3 = (Button) findViewById(R.id.answerBtn3);
         answerBtn4 = (Button) findViewById(R.id.answerBtn4);
         answerBtn5 = (Button) findViewById(R.id.answerBtn5);
-        getAnswers();
+        getQuestion();
         View.OnClickListener ButtonClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,9 +104,9 @@ public class QuizActivity extends BaseActivity {
         answerBtn5.setOnClickListener(ButtonClickListener);
     }
 
-    public void getAnswers () {
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = getResources().getString(R.string.URL) + "/api/test/answers";
+  public void getAnswers () {
+/*        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = getResources().getString(R.string.URL) + "/api/testing/answers";
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url,
                 null,
                 new Response.Listener<JSONObject>() {
@@ -128,9 +135,9 @@ public class QuizActivity extends BaseActivity {
                                     case 5:
                                         answerBtn5.setText(answers.getAnswerText());
                                         break;
-                                }
-                                getQuestion();
-                            }
+                                }*/
+                                //getQuestion();
+   /*                         }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -140,12 +147,13 @@ public class QuizActivity extends BaseActivity {
             public void onErrorResponse(VolleyError error) {
                 tvQuestionText.setText("That didn't work!");
             }
-        });
-        queue.add(stringRequest);
+        });*/
+        //queue.add(stringRequest);
     }
+
     public void getQuestion() {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = getResources().getString(R.string.URL) + "/questions";
+        String url = getResources().getString(R.string.URL) + "/api/testing/questions";
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url,
                 null, new Response.Listener<JSONObject>() {
             @Override
@@ -169,7 +177,7 @@ public class QuizActivity extends BaseActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                tvQuestionText.setText("That didn't work!");
+                tvQuestionText.setText(error.getMessage() + "пашол нахуй андроид");
             }
         });
         queue.add(stringRequest);
@@ -195,8 +203,7 @@ public class QuizActivity extends BaseActivity {
     }
     public void answer(int numberButton) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        Map params = new HashMap();
-        params.put("idA", numberButton);
+        /*params.put("idA", numberButton);
         params.put("idQ", Long.toString(currentQuestion.getId()));
         String URL =  getResources().getString(R.string.URL) + "/api/test/giveAnswer";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,URL,
@@ -227,7 +234,7 @@ public class QuizActivity extends BaseActivity {
                 return "application/json";
             }
         };
-        requestQueue.add(request);
+        requestQueue.add(request);*/
     }
     public void finishAttempt() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);

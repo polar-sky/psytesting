@@ -109,5 +109,9 @@
     <string name="invalid_password">Пароль должен быть больше 5 символов</string>
     <string name="login_failed">"Login failed"</string>
 
-    <string name="answer">Идет получение ответа...</string>
+    <string name="answer1">Абс0лютн0 не с0гласен(а)</string>
+    <string name="answer2">Не с0гласен(а)</string>
+    <string name="answer3">Нейтр@лен(а)</string>
+    <string name="answer4">С0гласен(а)</string>
+    <string name="answer5">п0лн0стью с0гласен(а)</string>
 </resources>

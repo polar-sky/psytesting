@@ -32,6 +32,8 @@ public class LoginActivity extends AppCompatActivity {
     public Button btnAuthSubmit;
     private Button register;
 
+    public String token = "null";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_loginn);
@@ -54,10 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         public void onClick(View view){
             btnAuth(view);
-            Context context = LoginActivity.this;
-            Class destinationActivity = MainActivity.class;
-            Intent mainActivityIntent = new Intent(context, destinationActivity);
-            startActivity(mainActivityIntent);
+
         }
     });
 
@@ -79,9 +78,15 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        try {
+                            token = response.getString("accessToken");
+                            Log.d("Ключ", token);
+                            goToMainActivity(token);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         Toast toast = Toast.makeText(getApplicationContext(),
                                 "Вход выполнен", Toast.LENGTH_SHORT);
-                        goToMainActivity();
                         toast.show();
                     }
                 }, new Response.ErrorListener() {
@@ -91,7 +96,6 @@ public class LoginActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "Вход не выполнен", Toast.LENGTH_SHORT);
                 toast.show();
-                goToLoginActivity();
             }
         }) {
             @Override
@@ -104,17 +108,16 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public void goToMainActivity() {
+    public void goToMainActivity(String string) {
         Intent main = new Intent(this, MainActivity.class);
+        main.putExtra("token_key", string);
         startActivity(main);
         finish();
     }
 
     public void goToLoginActivity() {
-        Intent main = new Intent(this, LoginActivity.class);
-        startActivity(main);
+        Intent login = new Intent(this, LoginActivity.class);
+        startActivity(login);
         finish();
     }
-
-
 }
