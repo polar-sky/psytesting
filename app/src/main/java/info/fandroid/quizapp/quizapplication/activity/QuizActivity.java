@@ -10,11 +10,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -32,7 +34,10 @@ import info.fandroid.quizapp.quizapplication.json.Questions;
 
 public class QuizActivity extends BaseActivity {
 
-    private int JP;
+    private int JP = 0;
+    private int SN = 0;
+    private int EI = 0;
+    private int TF = 0;
 
     private Activity mActivity;
     private Context mContext;
@@ -54,13 +59,10 @@ public class QuizActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        Intent intent = getIntent();
-        //token = intent.getStringExtra("token_key");
-        //isAuth = intent.getStringExtra("isAuth");\
 
-        //TOKEN BLYAT
         Bundle arguments = getIntent().getExtras();
         token = arguments.get("token_key").toString();
+        Log.e("ТОКЕН2", token + "");
         //isAuth = arguments.get("isAuth").toString();
 
         runTimer();
@@ -102,52 +104,6 @@ public class QuizActivity extends BaseActivity {
         answerBtn5.setOnClickListener(ButtonClickListener);
     }
 
-  public void getAnswers () {
-/*        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = getResources().getString(R.string.URL) + "/api/testing/answers";
-        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url,
-                null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray jsonArray = response.getJSONArray("answers");
-                            for (int i = 0; i<jsonArray.length();i++) {
-                                Answers answers = new Answers();
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                answers.setAnswerText(jsonObject.getString("answerText"));
-                                answers.setNumber(jsonObject.getInt("number"));
-                                switch (answers.getNumber()) {
-                                    case 1:
-                                        answerBtn1.setText(answers.getAnswerText());
-                                        break;
-                                    case 2:
-                                        answerBtn2.setText(answers.getAnswerText());
-                                        break;
-                                    case 3:
-                                        answerBtn3.setText(answers.getAnswerText());
-                                        break;
-                                    case 4:
-                                        answerBtn4.setText(answers.getAnswerText());
-                                        break;
-                                    case 5:
-                                        answerBtn5.setText(answers.getAnswerText());
-                                        break;
-                                }*/
-                                //getQuestion();
-   /*                         }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                tvQuestionText.setText("That didn't work!");
-            }
-        });*/
-        //queue.add(stringRequest);
-    }
 
     public void getQuestion() {
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -156,11 +112,10 @@ public class QuizActivity extends BaseActivity {
                 null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                //tvQuestionText.setText( "пашол нахуй андроид");
                 try {
 
                     Log.d("Here Log d", "ты чо не отвечаешь сссука!");
-                    for (int i = 0; i<response.length();i++) {
+                    for (int i = 0; i < response.length(); i++) {
                         //JSONArray jsonArray = response.getJSONArray(i);
 
                         Questions questions = new Questions();
@@ -182,18 +137,20 @@ public class QuizActivity extends BaseActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                tvQuestionText.setText(error.getMessage() + "пашол нахуй андроид");
+                tvQuestionText.setText(error.getMessage());
             }
         });
         queue.add(stringRequest);
     }
+
     private void addQuestionInQuestions(Questions questions) {
         questionList.add(questions);
-        if (questions.getId() == 2) {
+        if (questions.getId() == 31) {
             setQuestionText(questionList, 0);
             tvQuestionTitle.setText("1/32");
         }
     }
+
     private void setQuestionText(List<Questions> questionList, int currentQuestionNumber) {
         if (currentQuestionNumber == 32) {
             finishAttempt();
@@ -203,48 +160,40 @@ public class QuizActivity extends BaseActivity {
             currentQuestion.setType(jsonQuestionInThisMethod.getType());
             currentQuestion.setQuestionText(jsonQuestionInThisMethod.getQuestionText());
             tvQuestionText.setText(jsonQuestionInThisMethod.getQuestionText());
-            tvQuestionTitle.setText(jsonQuestionInThisMethod.getId() + "/32");
+            tvQuestionTitle.setText((jsonQuestionInThisMethod.getId()+1) + "/32");
         }
     }
+
+    //СЧИТАЕМ
     public void answer(int numberButton) {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        /*params.put("idA", numberButton);
-        params.put("idQ", Long.toString(currentQuestion.getId()));
-        String URL =  getResources().getString(R.string.URL) + "/api/test/giveAnswer";
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,URL,
-                new JSONObject(params),
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        if (!response.equals(null)) {
-                            setQuestionText(questionList,currentQuestion.getId());
-                        } else {
-                            Log.e("Your Array Response", "Data Null");
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("error is ", "" + error);
+
+        Integer idQ =  currentQuestion.getId();
+
+        if ((currentQuestion.getType()).equals("JP")) {
+            JP += numberButton;
+            Log.e("жепе", "" + JP + "");
+        } else {
+            if ((currentQuestion.getType()).equals("SN")) {
+                SN += numberButton;
+            } else {
+                if ((currentQuestion.getType()).equals("EI")) {
+                    EI += numberButton;
+                } else TF += numberButton;
             }
-        }) {
-            @Override
-            public Map getHeaders() throws AuthFailureError {
-                Map params = new HashMap();
-                params.put("Authorization", "Bearer "+ token);
-                return params;
-            }
-            @Override
-            public String getBodyContentType() {
-                return "application/json";
-            }
-        };
-        requestQueue.add(request);*/
+        }
+
+        Log.e("непажилой параметр", currentQuestion.getType());
+
+        Log.e("пажилой параметр", JP + "" + SN + "" + EI + "" + TF);
+
+        setQuestionText(questionList, idQ+1);
     }
-    public void finishAttempt() {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        Map params = new HashMap();
-        String URL =  getResources().getString(R.string.URL) + "/api/test/finishAttempt";
+
+
+            public void finishAttempt () {
+                RequestQueue requestQueue = Volley.newRequestQueue(this);
+                Map params = new HashMap();
+                String URL = getResources().getString(R.string.URL) + "/api/test/finishAttempt";
         /*JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,URL,
                 new JSONObject(params),
                 new Response.Listener<JSONObject>() {
@@ -274,25 +223,25 @@ public class QuizActivity extends BaseActivity {
             }
         };
         requestQueue.add(request);*/
-    }
-
-    private void runTimer() {
-        final TextView textViewTimer = (TextView) findViewById(R.id.tvTimer);
-        final Handler handler = new Handler();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                int minutes = (seconds%3600)/60;
-                int secon = seconds%60;
-                String time = String.format("%02d:%02d", minutes, secon);
-                textViewTimer.setText(time);
-                if (running) {
-                    seconds++;
-                    handler.postDelayed(this, 1000);
-                }
             }
-        });
-    }
+
+            private void runTimer () {
+                final TextView textViewTimer = (TextView) findViewById(R.id.tvTimer);
+                final Handler handler = new Handler();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        int minutes = (seconds % 3600) / 60;
+                        int secon = seconds % 60;
+                        String time = String.format("%02d:%02d", minutes, secon);
+                        textViewTimer.setText(time);
+                        if (running) {
+                            seconds++;
+                            handler.postDelayed(this, 1000);
+                        }
+                    }
+                });
+            }
 
 
-}
+        }

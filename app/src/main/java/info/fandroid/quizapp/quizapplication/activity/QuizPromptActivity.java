@@ -46,13 +46,11 @@ public class QuizPromptActivity extends BaseActivity {
         initVar();
         initView();
         initListener();
-        Intent intent = getIntent();
-        //token = intent.getStringExtra("token_key");
-        //isAuth = intent.getStringExtra("isAuth");
 
-        //получаем ебучий токен
+        //получаем токен
         Bundle arguments = getIntent().getExtras();
         token = arguments.get("token_key").toString();
+        Log.e("ТОКЕН", token + "");
         //isAuth = arguments.get("isAuth").toString();
     }
 
@@ -85,8 +83,6 @@ public class QuizPromptActivity extends BaseActivity {
         initToolbar(true);
         setToolbarTitle(getString(R.string.quiz_prompt));
         enableUpButton();
-
-
     }
 
 
@@ -95,7 +91,7 @@ public class QuizPromptActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 goToTestActivity(isAuth);
-                //ActivityUtilities.getInstance().invokeCommonQuizActivity(mActivity, QuizActivity.class, categoryId, true);
+               //ActivityUtilities.getInstance().invokeCommonQuizActivity(mActivity, QuizActivity.class, categoryId, true);
             }
         });
         mBtnNo.setOnClickListener(new View.OnClickListener() {
@@ -123,12 +119,12 @@ public class QuizPromptActivity extends BaseActivity {
 
     public void goToTestActivity(String isAuth) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String URL =  getResources().getString(R.string.URL) + "/api/test/startAttempt";
+        String URL =  getResources().getString(R.string.URL) + "/api/testing/startAttempt";
         StringRequest request = new StringRequest(Request.Method.POST, URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
+                        goQuiz();
                     }
 
                 }, new Response.ErrorListener() {
@@ -146,9 +142,12 @@ public class QuizPromptActivity extends BaseActivity {
         };
         requestQueue.add(request);
 
+    }
+
+    public void goQuiz(){
         Intent test = new Intent(this, QuizActivity.class);
         test.putExtra("token_key", token);
-        test.putExtra("isAuth", isAuth);
+        //test.putExtra("isAuth", isAuth);
         startActivity(test);
     }
 

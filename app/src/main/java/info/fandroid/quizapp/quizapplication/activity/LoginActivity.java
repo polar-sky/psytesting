@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         String username = editTextNickname.getText().toString();
         String password = editTextPassword.getText().toString();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String URL = "https://psytest-mbti.herokuapp.com/api/auth/signin";
+        String URL = getResources().getString(R.string.URL) + "/api/auth/signin";
         HashMap<String, String> params = new HashMap<>();
         params.put("password", password);
         params.put("username", username);

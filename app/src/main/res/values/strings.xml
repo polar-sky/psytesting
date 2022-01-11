@@ -2,6 +2,7 @@
     <string name="app_name">MBTI</string>
     <string name="tv_description">Узнай свой тип личности</string>
 
+    <!--<string name="URL">http://192.168.0.104:8090</string>-->
     <string name="URL">https://psytest-mbti.herokuapp.com</string>
     <string name="tap_again">Нажмите Назад еще раз для выхода</string>
 
@@ -19,14 +20,14 @@
     <string name="site_url">/</string>
 
     <!-- about developer text  -->
-    <string name="developer_name">Fandroid.info</string>
-    <string name="developer_detail">Уроки по разработке приложений</string>
-    <string name="developer_message">Данное приложение является сборником тестов по андроид-программированию. Приложение можно использовать для проверки своих знаний и для подготовки к собеседованию. Это приложение создано в рамках Продвинутого курса по разработке android приложений. Больше информации о наших курсах смотрите на сайте Fandroid.info, YouTube-канале "Start Android" и наших страницах в социальных сетях</string>
+    <string name="developer_name">Юля и Аня</string>
+    <string name="developer_detail">Курсовой проект ТРМП</string>
+    <string name="developer_message">/ᐠ｡‸｡ᐟ\  /ᐠ｡‸｡ᐟ\</string>
 
     <string name="quiz">Тестирование</string>
 
-    <string name="others">Others</string>
-    <string name="site">Fandroid.info</string>
+    <string name="others">strelky metnyla</string>
+    <string name="site">pisky sosnyla</string>
     <string name="privacy">Privacy Policy</string>
     <string name="share">Поделиться</string>
     <string name="rate">Оцените приложение</string>
