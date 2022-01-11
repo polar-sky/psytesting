@@ -10,12 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -28,7 +27,6 @@ import java.util.List;
 import java.util.Map;
 
 import info.fandroid.quizapp.quizapplication.R;
-import info.fandroid.quizapp.quizapplication.json.Answers;
 import info.fandroid.quizapp.quizapplication.json.Questions;
 
 
@@ -154,15 +152,22 @@ public class QuizActivity extends BaseActivity {
     public void getQuestion() {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = getResources().getString(R.string.URL) + "/api/testing/questions";
-        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url,
-                null, new Response.Listener<JSONObject>() {
+        JsonArrayRequest stringRequest = new JsonArrayRequest(Request.Method.GET, url,
+                null, new Response.Listener<JSONArray>() {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onResponse(JSONArray response) {
+                //tvQuestionText.setText( "пашол нахуй андроид");
                 try {
-                    JSONArray jsonArray = response.getJSONArray("questions");
-                    for (int i = 0; i<jsonArray.length();i++) {
+
+                    Log.d("Here Log d", "ты чо не отвечаешь сссука!");
+                    for (int i = 0; i<response.length();i++) {
+                        //JSONArray jsonArray = response.getJSONArray(i);
+
                         Questions questions = new Questions();
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        JSONObject jsonObject = response.getJSONObject(i);
+
+                        String question = jsonObject.getString("text1");
+
                         questions.setQuestionText(jsonObject.getString(
                                 "text1"
                         ));
@@ -184,7 +189,7 @@ public class QuizActivity extends BaseActivity {
     }
     private void addQuestionInQuestions(Questions questions) {
         questionList.add(questions);
-        if (questions.getId() == 32) {
+        if (questions.getId() == 2) {
             setQuestionText(questionList, 0);
             tvQuestionTitle.setText("1/32");
         }

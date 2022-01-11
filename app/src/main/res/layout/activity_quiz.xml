@@ -30,7 +30,7 @@
             android:layout_marginBottom="4dp"
             android:lineSpacingMultiplier="1.1"
             android:textSize="17sp"
-            tools:text="@string/quiz_question_title" />
+            tools:text="*/*" />
 
         <TextView
             android:id="@+id/tvTimer"
