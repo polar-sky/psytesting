@@ -197,7 +197,7 @@ public class QuizActivity extends BaseActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    getResultRequest(response.getLong("id"));
+                    getResults(response.getLong("id"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -223,118 +223,49 @@ public class QuizActivity extends BaseActivity {
         requestQueue.add(request);
     }
 
-    private void getResultRequest(long id) {
+    private void getResults(long id) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         Map params = new HashMap();
+        params.put("IE", EI);
+        params.put("JP", JP);
+        params.put("SN", SN);
+        params.put("TF", TF);
         params.put("id", id);
-        String URL =  getResources().getString(R.string.URL) + "/api/test/getResults";
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,URL, new JSONObject(params),
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray jsonArray = response.getJSONArray("results");
-                            Results jsonResult = new Results();
-                            for (int i = 0; i<jsonArray.length();i++) {
-                                JSONObject jsonObjectResults = jsonArray.getJSONObject(i);
-                                JSONObject jsonObjectFactor = jsonObjectResults.getJSONObject("factor");
-                                int idFactor = jsonObjectFactor.getInt("id");
-                                if (idFactor == 1) {
-                                    jsonResult.setDescription_plan(jsonObjectResults.getString("description"));
-                                    jsonResult.setPoints_plan(jsonObjectResults.getInt("points"));
+        String url = getResources().getString(R.string.URL) + "/api/testing/results";
+        JsonArrayRequest stringRequest = new JsonArrayRequest(Request.Method.GET, url,
+                null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
 
-                                    jsonResult.setName_plan(jsonObjectFactor.getString("name"));
-                                    jsonResult.setQcriticMale_plan(jsonObjectFactor.getInt("qcriticMale"));
-                                    jsonResult.setMcriticMale_plan(jsonObjectFactor.getInt("mcriticMale"));
-                                    jsonResult.setQcriticFemale_plan(jsonObjectFactor.getInt("qcriticFemale"));
-                                    jsonResult.setMcriticFemale_plan(jsonObjectFactor.getInt("mcriticFemale"));
-                                }
-                                if (idFactor == 2) {
-                                    jsonResult.setDescription_cele(jsonObjectResults.getString("description"));
-                                    jsonResult.setPoints_cele(jsonObjectResults.getInt("points"));
+                    Log.d("Here Log d", "результатики подсоситесь");
+                    for (int i = 0; i < response.length(); i++) {
+                        //JSONArray jsonArray = response.getJSONArray(i);
 
-                                    jsonResult.setName_cele(jsonObjectFactor.getString("name"));
-                                    jsonResult.setQcriticMale_cele(jsonObjectFactor.getInt("qcriticMale"));
-                                    jsonResult.setMcriticMale_cele(jsonObjectFactor.getInt("mcriticMale"));
-                                    jsonResult.setQcriticFemale_cele(jsonObjectFactor.getInt("qcriticFemale"));
-                                    jsonResult.setMcriticFemale_cele(jsonObjectFactor.getInt("mcriticFemale"));
-                                }
-                                if (idFactor == 3) {
-                                    jsonResult.setDescription_nast(jsonObjectResults.getString("description"));
-                                    jsonResult.setPoints_nast(jsonObjectResults.getInt("points"));
+                        //!TODO сюда распарсить результатики юля помоги
+                        Questions questions = new Questions();
+                        JSONObject jsonObject = response.getJSONObject(i);
 
-                                    jsonResult.setName_nast(jsonObjectFactor.getString("name"));
-                                    jsonResult.setQcriticMale_nast(jsonObjectFactor.getInt("qcriticMale"));
-                                    jsonResult.setMcriticMale_nast(jsonObjectFactor.getInt("mcriticMale"));
-                                    jsonResult.setQcriticFemale_nast(jsonObjectFactor.getInt("qcriticFemale"));
-                                    jsonResult.setMcriticFemale_nast(jsonObjectFactor.getInt("mcriticFemale"));
-                                }
-                                if (idFactor == 4) {
-                                    jsonResult.setDescription_fiks(jsonObjectResults.getString("description"));
-                                    jsonResult.setPoints_fiks(jsonObjectResults.getInt("points"));
+                        String question = jsonObject.getString("text1");
 
-                                    jsonResult.setName_fiks(jsonObjectFactor.getString("name"));
-                                    jsonResult.setQcriticMale_fiks(jsonObjectFactor.getInt("qcriticMale"));
-                                    jsonResult.setMcriticMale_fiks(jsonObjectFactor.getInt("mcriticMale"));
-                                    jsonResult.setQcriticFemale_fiks(jsonObjectFactor.getInt("qcriticFemale"));
-                                    jsonResult.setMcriticFemale_fiks(jsonObjectFactor.getInt("mcriticFemale"));
-                                }
-                                if (idFactor == 5) {
-                                    jsonResult.setDescription_samo(jsonObjectResults.getString("description"));
-                                    jsonResult.setPoints_samo(jsonObjectResults.getInt("points"));
-
-                                    jsonResult.setName_samo(jsonObjectFactor.getString("name"));
-                                    jsonResult.setQcriticMale_samo(jsonObjectFactor.getInt("qcriticMale"));
-                                    jsonResult.setMcriticMale_samo(jsonObjectFactor.getInt("mcriticMale"));
-                                    jsonResult.setQcriticFemale_samo(jsonObjectFactor.getInt("qcriticFemale"));
-                                    jsonResult.setMcriticFemale_samo(jsonObjectFactor.getInt("mcriticFemale"));
-                                }
-                                if (idFactor == 6) {
-                                    jsonResult.setDescription_orie(jsonObjectResults.getString("description"));
-                                    jsonResult.setPoints_orie(jsonObjectResults.getInt("points"));
-
-                                    jsonResult.setName_orie(jsonObjectFactor.getString("name"));
-                                    jsonResult.setQcriticMale_orie(jsonObjectFactor.getInt("qcriticMale"));
-                                    jsonResult.setMcriticMale_orie(jsonObjectFactor.getInt("mcriticMale"));
-                                    jsonResult.setQcriticFemale_orie(jsonObjectFactor.getInt("qcriticFemale"));
-                                    jsonResult.setMcriticFemale_orie(jsonObjectFactor.getInt("mcriticFemale"));
-                                }
-                                if (idFactor == 7) {
-                                    jsonResult.setDescription_general(jsonObjectResults.getString("description"));
-                                    jsonResult.setPoints_general(jsonObjectResults.getInt("points"));
-
-                                    jsonResult.setName_general(jsonObjectFactor.getString("name"));
-                                    jsonResult.setQcriticMale_general(jsonObjectFactor.getInt("qcriticMale"));
-                                    jsonResult.setMcriticMale_general(jsonObjectFactor.getInt("mcriticMale"));
-                                    jsonResult.setQcriticFemale_general(jsonObjectFactor.getInt("qcriticFemale"));
-                                    jsonResult.setMcriticFemale_general(jsonObjectFactor.getInt("mcriticFemale"));
-                                }
-                            }
-
-                            goToResultActivity(jsonResult);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        questions.setQuestionText(jsonObject.getString(
+                                "text1"
+                        ));
+                        questions.setType(jsonObject.getString("type"));
+                        questions.setId(jsonObject.getInt("id"));
+                        addQuestionInQuestions(questions);
                     }
-                }, new Response.ErrorListener() {
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("error is ", "" + error);
+                tvQuestionText.setText(error.getMessage());
             }
-        }) {
-            @Override
-            public Map getHeaders() throws AuthFailureError {
-                Map params = new HashMap();
-                params.put("Authorization", "Bearer "+ token);
-                return params;
-            }
-            @Override
-            public String getBodyContentType() {
-                return "application/json";
-            }
-        };
-        requestQueue.add(request);
+        });
+        requestQueue.add(stringRequest);
     }
 
     private void goToResultActivity(Results jsonResult) {
@@ -342,6 +273,7 @@ public class QuizActivity extends BaseActivity {
         i.putExtra("token_key", token);
         i.putExtra("JSONResult", jsonResult);
         i.putExtra("isAuth", isAuth);
+        //!TODO ПЕРЕДАТЬ РЕЗУЛЬТАТИК ПОЖИЛОЙ В ДРУГУЮ АКТИВНОСТЬ РЕЗУЛЬТАТИКОВ
         startActivity(i);
         finish();
     }
