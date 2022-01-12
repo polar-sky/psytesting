@@ -47,9 +47,7 @@ public class ResultActivity extends AppCompatActivity {
 
     private void goToMainActivity() {
         Intent i = new Intent(this, MainActivity.class);
-        if (isAuth.equals("yes")) {
-            i.putExtra("token_key", token);
-        }
+        i.putExtra("token_key", token);
         startActivity(i);
         finish();
     }

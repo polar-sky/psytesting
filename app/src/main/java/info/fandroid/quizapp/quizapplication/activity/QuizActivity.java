@@ -181,7 +181,7 @@ public class QuizActivity extends BaseActivity {
 
         Log.e("непажилой параметр", currentQuestion.getType());
 
-        Log.e("пажилой параметр", JP + "" + SN + "" + EI + "" + TF);
+        Log.e("пажилой параметр", JP + " " + SN + " " + EI + " " + TF);
 
         setQuestionText(questionList, idQ+1);
     }
@@ -225,15 +225,10 @@ public class QuizActivity extends BaseActivity {
 
     private void getResults(long id) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        Map params = new HashMap();
-        params.put("IE", EI);
-        params.put("SN", SN);
-        params.put("TF", TF);
-        params.put("JP", JP);
-        params.put("id", id);
-        String url = getResources().getString(R.string.URL) + "/api/testing/results";
+        String params = "IE=" + EI + "&SN=" + SN + "&TF=" + TF + "&JP=" + JP + "&id=" + id;
+        String url = getResources().getString(R.string.URL) + "/api/testing/results?" + params;
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url,
-                new JSONObject(params), new Response.Listener<JSONObject>() {
+                null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
@@ -241,7 +236,7 @@ public class QuizActivity extends BaseActivity {
                     for (int i = 0; i < response.length(); i++) {
 
                         Results results = new Results();
-                        JSONObject jsonObject = response.getJSONObject("");
+                        JSONObject jsonObject = response.getJSONObject("results");
 
                         results.setDescription(jsonObject.getString(
                                 "description"
