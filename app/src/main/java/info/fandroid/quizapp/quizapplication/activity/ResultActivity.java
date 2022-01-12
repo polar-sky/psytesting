@@ -14,7 +14,7 @@ public class ResultActivity extends AppCompatActivity {
 
     private String token;
     private String isAuth;
-    private Results jsonResult;
+    private Results results;
 
     private TextView tvResult;
     private TextView tvResultText;
@@ -29,7 +29,7 @@ public class ResultActivity extends AppCompatActivity {
 
         token = intent.getStringExtra("token_key");
         isAuth = intent.getStringExtra("isAuth");
-        jsonResult = (Results) intent.getSerializableExtra("Results");
+        results = (Results) intent.getSerializableExtra("Results");
 
         tvResult = findViewById(R.id.tvResult);
         tvResultText = findViewById(R.id.tvResultText);
@@ -43,6 +43,8 @@ public class ResultActivity extends AppCompatActivity {
         };
 
         btnGoMain.setOnClickListener(btnGoMainClick);
+        tvResult.setText(results.getType());
+        tvResultText.setText(results.getDescription());
     }
 
     private void goToMainActivity() {
