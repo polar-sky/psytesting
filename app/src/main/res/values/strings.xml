@@ -6,16 +6,6 @@
     <string name="URL">https://psytest-mbti.herokuapp.com</string>
     <string name="tap_again">Нажмите Назад еще раз для выхода</string>
 
-    <!-- app social site links section -->
-    <string name="facebook_url">https://www.facebook.com/pg/fandroidinfo/</string>
-    <string name="youtube_url">https://www.youtube.com/user/vitaxafication</string>
-    <string name="twitter_user_id">twitter://user?user_id=1329640969</string> <!-- find your user id from here: http://gettwitterid.com/  -->
-    <string name="twitter_url">https://twitter.com/nepochatoff</string>
-    <string name="google_plus_url">https://plus.google.com/u/0/+vitaxafication</string>
-
-    <!-- privacy policy url -->
-    <string name="privacy_url">https://docs.google.com/document/d/1ZUrFQwbxDTpg_o9UUx9NtH_JtOSmVuZqD2FTLBJ5qno/edit?usp=sharing</string>
-
     <!-- privacy policy url -->
     <string name="site_url">/</string>
 
@@ -118,4 +108,7 @@
     <string name="loading_result">MMMM</string>
     <string name="loadingTextResults">Загрузка текста результата</string>
     <string name="go_to_main">Вернуться на главную</string>
+    <string name="name">name</string>
+    <string name="UserName">Имя пользователя:</string>
+    <string name="email">Email:</string>
 </resources>

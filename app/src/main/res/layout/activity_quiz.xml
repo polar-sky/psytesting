@@ -91,7 +91,6 @@
             android:layout_marginTop="8dp"
             android:text="@string/answer5" />
 
-        <include layout="@layout/view_loader" />
 
     </RelativeLayout>
 

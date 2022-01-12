@@ -91,8 +91,11 @@ public class MainActivity extends BaseActivity {
                 .withOnAccountHeaderProfileImageListener(new AccountHeader.OnAccountHeaderProfileImageListener() {
                     @Override
                     public boolean onProfileImageClick(View view, IProfile profile, boolean current) {
-                        ActivityUtilities.getInstance().invokeCustomUrlActivity(activity, CustomUrlActivity.class,
-                                getResources().getString(R.string.site), getResources().getString(R.string.site_url), false);
+                        Intent i = new Intent(activity, AccountActivity.class);
+                        i.putExtra("token_key", token);
+                        i.putExtra("isAuth", isAuth);
+                        startActivity(i);
+                        finish();
                         return false;
                     }
 

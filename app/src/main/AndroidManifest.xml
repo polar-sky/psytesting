@@ -16,6 +16,9 @@
             android:name=".activity.StatisticActivity"
             android:exported="true" />
         <activity
+            android:name=".activity.AccountActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.RegActivity"
             android:exported="true" />
         <activity
