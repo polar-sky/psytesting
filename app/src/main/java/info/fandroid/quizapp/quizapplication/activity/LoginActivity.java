@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Context context = LoginActivity.this;
-                Class destinationActivity = RegActivity.class;
+                Class destinationActivity = MainActivity.class;
                 Intent mainActivityIntent = new Intent(context, destinationActivity);
                 startActivity(mainActivityIntent);
 

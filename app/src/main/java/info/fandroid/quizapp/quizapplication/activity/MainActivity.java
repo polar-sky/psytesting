@@ -131,9 +131,13 @@ public class MainActivity extends BaseActivity {
                                 ActivityUtilities.getInstance().invokeNewActivity(activity, AboutDevActivity.class, false);
 
                             } else if (drawerItem.getIdentifier() == 20) {
-                                // TODO: invoke MainActivity
+
                             } else if (drawerItem.getIdentifier() == 21) {
-                                // TODO: invoke StatisticActivity
+                                Intent i = new Intent(activity, StatisticActivity.class);
+                                i.putExtra("token_key", token);
+                                i.putExtra("isAuth", isAuth);
+                                startActivity(i);
+                                finish();
                             } else if (drawerItem.getIdentifier() == 30) {
                                 // TODO: invoke SettingActivity
                             } else if (drawerItem.getIdentifier() == 40) {

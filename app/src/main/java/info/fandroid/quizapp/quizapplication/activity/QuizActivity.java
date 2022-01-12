@@ -107,6 +107,7 @@ public class QuizActivity extends BaseActivity {
         String url = getResources().getString(R.string.URL) + "/api/testing/questions";
         JsonArrayRequest stringRequest = new JsonArrayRequest(Request.Method.GET, url,
                 null, new Response.Listener<JSONArray>() {
+
             @Override
             public void onResponse(JSONArray response) {
                 try {
