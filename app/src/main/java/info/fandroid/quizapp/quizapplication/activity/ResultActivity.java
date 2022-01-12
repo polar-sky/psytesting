@@ -29,7 +29,7 @@ public class ResultActivity extends AppCompatActivity {
 
         token = intent.getStringExtra("token_key");
         isAuth = intent.getStringExtra("isAuth");
-        jsonResult = (Results) intent.getSerializableExtra("JSONResult");
+        jsonResult = (Results) intent.getSerializableExtra("Results");
 
         tvResult = findViewById(R.id.tvResult);
         tvResultText = findViewById(R.id.tvResultText);

@@ -261,7 +261,7 @@ public class QuizActivity extends BaseActivity {
     private void goToResultActivity(Results jsonResult) {
         Intent i = new Intent(this, ResultActivity.class);
         i.putExtra("token_key", token);
-        i.putExtra("JSONResult", jsonResult);
+        i.putExtra("Results", jsonResult);
         i.putExtra("isAuth", isAuth);
         startActivity(i);
         finish();
