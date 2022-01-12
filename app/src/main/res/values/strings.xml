@@ -115,4 +115,7 @@
     <string name="answer3">Нейтр@лен(а)</string>
     <string name="answer4">С0гласен(а)</string>
     <string name="answer5">п0лн0стью с0гласен(а)</string>
+    <string name="loading_result">MMMM</string>
+    <string name="loadingTextResults">Загрузка текста результата</string>
+    <string name="go_to_main">Вернуться на главную</string>
 </resources>

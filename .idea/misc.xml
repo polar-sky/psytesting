@@ -3,9 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/activity_main.xml" value="0.371875" />
         <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/activity_quiz.xml" value="0.25" />
         <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/activity_quiz_prompt.xml" value="0.32382246376811596" />
+        <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/activity_reg.xml" value="0.371875" />
+        <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/activity_result.xml" value="0.33" />
+        <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/activity_splash.xml" value="0.371875" />
+        <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/content_main.xml" value="0.371875" />
+        <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/item_category_recycler.xml" value="0.371875" />
         <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/item_quiz.xml" value="0.32382246376811596" />
+        <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/toolbar.xml" value="0.371875" />
+        <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/toolbar_main.xml" value="0.371875" />
         <entry key="..\:/Users/BSC/AndroidStudioProjects/psytesting/app/src/main/res/layout/activity_loginn.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/BSC/AndroidStudioProjects/psytesting/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/BSC/AndroidStudioProjects/psytesting/app/src/main/res/layout/fragment_custom_dialog.xml" value="0.25416666666666665" />

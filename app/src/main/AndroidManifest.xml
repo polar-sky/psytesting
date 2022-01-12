@@ -37,6 +37,10 @@
             android:name=".activity.QuizActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.ResultActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

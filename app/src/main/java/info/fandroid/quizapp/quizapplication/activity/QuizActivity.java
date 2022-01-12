@@ -1,7 +1,5 @@
 package info.fandroid.quizapp.quizapplication.activity;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -30,6 +28,7 @@ import java.util.Map;
 
 import info.fandroid.quizapp.quizapplication.R;
 import info.fandroid.quizapp.quizapplication.json.Questions;
+import info.fandroid.quizapp.quizapplication.json.Results;
 
 
 public class QuizActivity extends BaseActivity {
@@ -39,8 +38,6 @@ public class QuizActivity extends BaseActivity {
     private int EI = 0;
     private int TF = 0;
 
-    private Activity mActivity;
-    private Context mContext;
     private TextView tvQuestionText;
     private TextView tvQuestionTitle;
     private Button answerBtn5;
@@ -190,17 +187,132 @@ public class QuizActivity extends BaseActivity {
     }
 
 
-            public void finishAttempt () {
-                RequestQueue requestQueue = Volley.newRequestQueue(this);
+    public void finishAttempt () {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        Map params = new HashMap();
+        String URL = getResources().getString(R.string.URL) + "/api/testing/finishAttempt";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,URL,
+        new JSONObject(params),
+        new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    getResultRequest(response.getLong("id"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("error is ", "" + error);
+            }
+        }) {
+            @Override
+            public Map getHeaders() throws AuthFailureError {
                 Map params = new HashMap();
-                String URL = getResources().getString(R.string.URL) + "/api/test/finishAttempt";
-        /*JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,URL,
-                new JSONObject(params),
+                params.put("Authorization", "Bearer "+ token);
+                return params;
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+        };
+        requestQueue.add(request);
+    }
+
+    private void getResultRequest(long id) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        Map params = new HashMap();
+        params.put("id", id);
+        String URL =  getResources().getString(R.string.URL) + "/api/test/getResults";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,URL, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            getResultRequest(response.getLong("id"));
+                            JSONArray jsonArray = response.getJSONArray("results");
+                            Results jsonResult = new Results();
+                            for (int i = 0; i<jsonArray.length();i++) {
+                                JSONObject jsonObjectResults = jsonArray.getJSONObject(i);
+                                JSONObject jsonObjectFactor = jsonObjectResults.getJSONObject("factor");
+                                int idFactor = jsonObjectFactor.getInt("id");
+                                if (idFactor == 1) {
+                                    jsonResult.setDescription_plan(jsonObjectResults.getString("description"));
+                                    jsonResult.setPoints_plan(jsonObjectResults.getInt("points"));
+
+                                    jsonResult.setName_plan(jsonObjectFactor.getString("name"));
+                                    jsonResult.setQcriticMale_plan(jsonObjectFactor.getInt("qcriticMale"));
+                                    jsonResult.setMcriticMale_plan(jsonObjectFactor.getInt("mcriticMale"));
+                                    jsonResult.setQcriticFemale_plan(jsonObjectFactor.getInt("qcriticFemale"));
+                                    jsonResult.setMcriticFemale_plan(jsonObjectFactor.getInt("mcriticFemale"));
+                                }
+                                if (idFactor == 2) {
+                                    jsonResult.setDescription_cele(jsonObjectResults.getString("description"));
+                                    jsonResult.setPoints_cele(jsonObjectResults.getInt("points"));
+
+                                    jsonResult.setName_cele(jsonObjectFactor.getString("name"));
+                                    jsonResult.setQcriticMale_cele(jsonObjectFactor.getInt("qcriticMale"));
+                                    jsonResult.setMcriticMale_cele(jsonObjectFactor.getInt("mcriticMale"));
+                                    jsonResult.setQcriticFemale_cele(jsonObjectFactor.getInt("qcriticFemale"));
+                                    jsonResult.setMcriticFemale_cele(jsonObjectFactor.getInt("mcriticFemale"));
+                                }
+                                if (idFactor == 3) {
+                                    jsonResult.setDescription_nast(jsonObjectResults.getString("description"));
+                                    jsonResult.setPoints_nast(jsonObjectResults.getInt("points"));
+
+                                    jsonResult.setName_nast(jsonObjectFactor.getString("name"));
+                                    jsonResult.setQcriticMale_nast(jsonObjectFactor.getInt("qcriticMale"));
+                                    jsonResult.setMcriticMale_nast(jsonObjectFactor.getInt("mcriticMale"));
+                                    jsonResult.setQcriticFemale_nast(jsonObjectFactor.getInt("qcriticFemale"));
+                                    jsonResult.setMcriticFemale_nast(jsonObjectFactor.getInt("mcriticFemale"));
+                                }
+                                if (idFactor == 4) {
+                                    jsonResult.setDescription_fiks(jsonObjectResults.getString("description"));
+                                    jsonResult.setPoints_fiks(jsonObjectResults.getInt("points"));
+
+                                    jsonResult.setName_fiks(jsonObjectFactor.getString("name"));
+                                    jsonResult.setQcriticMale_fiks(jsonObjectFactor.getInt("qcriticMale"));
+                                    jsonResult.setMcriticMale_fiks(jsonObjectFactor.getInt("mcriticMale"));
+                                    jsonResult.setQcriticFemale_fiks(jsonObjectFactor.getInt("qcriticFemale"));
+                                    jsonResult.setMcriticFemale_fiks(jsonObjectFactor.getInt("mcriticFemale"));
+                                }
+                                if (idFactor == 5) {
+                                    jsonResult.setDescription_samo(jsonObjectResults.getString("description"));
+                                    jsonResult.setPoints_samo(jsonObjectResults.getInt("points"));
+
+                                    jsonResult.setName_samo(jsonObjectFactor.getString("name"));
+                                    jsonResult.setQcriticMale_samo(jsonObjectFactor.getInt("qcriticMale"));
+                                    jsonResult.setMcriticMale_samo(jsonObjectFactor.getInt("mcriticMale"));
+                                    jsonResult.setQcriticFemale_samo(jsonObjectFactor.getInt("qcriticFemale"));
+                                    jsonResult.setMcriticFemale_samo(jsonObjectFactor.getInt("mcriticFemale"));
+                                }
+                                if (idFactor == 6) {
+                                    jsonResult.setDescription_orie(jsonObjectResults.getString("description"));
+                                    jsonResult.setPoints_orie(jsonObjectResults.getInt("points"));
+
+                                    jsonResult.setName_orie(jsonObjectFactor.getString("name"));
+                                    jsonResult.setQcriticMale_orie(jsonObjectFactor.getInt("qcriticMale"));
+                                    jsonResult.setMcriticMale_orie(jsonObjectFactor.getInt("mcriticMale"));
+                                    jsonResult.setQcriticFemale_orie(jsonObjectFactor.getInt("qcriticFemale"));
+                                    jsonResult.setMcriticFemale_orie(jsonObjectFactor.getInt("mcriticFemale"));
+                                }
+                                if (idFactor == 7) {
+                                    jsonResult.setDescription_general(jsonObjectResults.getString("description"));
+                                    jsonResult.setPoints_general(jsonObjectResults.getInt("points"));
+
+                                    jsonResult.setName_general(jsonObjectFactor.getString("name"));
+                                    jsonResult.setQcriticMale_general(jsonObjectFactor.getInt("qcriticMale"));
+                                    jsonResult.setMcriticMale_general(jsonObjectFactor.getInt("mcriticMale"));
+                                    jsonResult.setQcriticFemale_general(jsonObjectFactor.getInt("qcriticFemale"));
+                                    jsonResult.setMcriticFemale_general(jsonObjectFactor.getInt("mcriticFemale"));
+                                }
+                            }
+
+                            goToResultActivity(jsonResult);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -222,26 +334,33 @@ public class QuizActivity extends BaseActivity {
                 return "application/json";
             }
         };
-        requestQueue.add(request);*/
+        requestQueue.add(request);
+    }
+
+    private void goToResultActivity(Results jsonResult) {
+        Intent i = new Intent(this, ResultActivity.class);
+        i.putExtra("token_key", token);
+        i.putExtra("JSONResult", jsonResult);
+        i.putExtra("isAuth", isAuth);
+        startActivity(i);
+        finish();
+    }
+
+    private void runTimer () {
+        final TextView textViewTimer = (TextView) findViewById(R.id.tvTimer);
+        final Handler handler = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                int minutes = (seconds % 3600) / 60;
+                int secon = seconds % 60;
+                String time = String.format("%02d:%02d", minutes, secon);
+                textViewTimer.setText(time);
+                if (running) {
+                    seconds++;
+                    handler.postDelayed(this, 1000);
+                }
             }
-
-            private void runTimer () {
-                final TextView textViewTimer = (TextView) findViewById(R.id.tvTimer);
-                final Handler handler = new Handler();
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        int minutes = (seconds % 3600) / 60;
-                        int secon = seconds % 60;
-                        String time = String.format("%02d:%02d", minutes, secon);
-                        textViewTimer.setText(time);
-                        if (running) {
-                            seconds++;
-                            handler.postDelayed(this, 1000);
-                        }
-                    }
-                });
-            }
-
-
-        }
+        });
+    }
+}
