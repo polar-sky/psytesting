@@ -227,33 +227,28 @@ public class QuizActivity extends BaseActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         Map params = new HashMap();
         params.put("IE", EI);
-        params.put("JP", JP);
         params.put("SN", SN);
         params.put("TF", TF);
+        params.put("JP", JP);
         params.put("id", id);
         String url = getResources().getString(R.string.URL) + "/api/testing/results";
-        JsonArrayRequest stringRequest = new JsonArrayRequest(Request.Method.GET, url,
-                null, new Response.Listener<JSONArray>() {
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url,
+                new JSONObject(params), new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(JSONArray response) {
+            public void onResponse(JSONObject response) {
                 try {
-
                     Log.d("Here Log d", "результатики подсоситесь");
                     for (int i = 0; i < response.length(); i++) {
-                        //JSONArray jsonArray = response.getJSONArray(i);
 
-                        //!TODO сюда распарсить результатики юля помоги
-                        Questions questions = new Questions();
-                        JSONObject jsonObject = response.getJSONObject(i);
+                        Results results = new Results();
+                        JSONObject jsonObject = response.getJSONObject("");
 
-                        String question = jsonObject.getString("text1");
-
-                        questions.setQuestionText(jsonObject.getString(
-                                "text1"
+                        results.setDescription(jsonObject.getString(
+                                "description"
                         ));
-                        questions.setType(jsonObject.getString("type"));
-                        questions.setId(jsonObject.getInt("id"));
-                        addQuestionInQuestions(questions);
+                        results.setType(jsonObject.getString("type"));
+                        results.setId(jsonObject.getInt("id"));
+                        goToResultActivity(results);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -273,7 +268,6 @@ public class QuizActivity extends BaseActivity {
         i.putExtra("token_key", token);
         i.putExtra("JSONResult", jsonResult);
         i.putExtra("isAuth", isAuth);
-        //!TODO ПЕРЕДАТЬ РЕЗУЛЬТАТИК ПОЖИЛОЙ В ДРУГУЮ АКТИВНОСТЬ РЕЗУЛЬТАТИКОВ
         startActivity(i);
         finish();
     }

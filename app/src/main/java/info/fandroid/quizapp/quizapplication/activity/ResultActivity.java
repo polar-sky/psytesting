@@ -3,6 +3,7 @@ package info.fandroid.quizapp.quizapplication.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -17,7 +18,7 @@ public class ResultActivity extends AppCompatActivity {
 
     private TextView tvResult;
     private TextView tvResultText;
-    private Button btnGoToMain;
+    private Button btnGoMain;
 
 
     @Override
@@ -32,7 +33,25 @@ public class ResultActivity extends AppCompatActivity {
 
         tvResult = findViewById(R.id.tvResult);
         tvResultText = findViewById(R.id.tvResultText);
+        btnGoMain = findViewById(R.id.btnGoMain);
 
+        View.OnClickListener btnGoMainClick = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToMainActivity();
+            }
+        };
+
+        btnGoMain.setOnClickListener(btnGoMainClick);
+    }
+
+    private void goToMainActivity() {
+        Intent i = new Intent(this, MainActivity.class);
+        if (isAuth.equals("yes")) {
+            i.putExtra("token_key", token);
+        }
+        startActivity(i);
+        finish();
     }
 
 }
