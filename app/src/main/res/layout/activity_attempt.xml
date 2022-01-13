@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.StatisticActivity">
+    tools:context=".activity.AttemptActivity">
 
     <include
         android:id="@+id/toolbarTop"
         layout="@layout/toolbar_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,21 +23,19 @@
         android:paddingBottom="15dp">
 
         <TextView
-            android:id="@+id/tvStatistic"
+            android:id="@+id/tvYourAttempts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/statistic_name"
-            android:textAlignment="center"
-            android:textSize="20sp" />
+            android:gravity="center"
+            android:text="@string/your_attempts"
+            android:textSize="40sp" />
 
-        <com.anychart.anychart.AnyChartView
-            android:id="@+id/any_chart_view"
+        <ListView
+            android:id="@+id/ListViewAttemptsResultList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/tvStatistic"
-            android:layout_marginTop="8dp"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
+            android:layout_below="@id/tvYourAttempts"
+            android:layout_marginTop="10dp" />
 
     </RelativeLayout>
 

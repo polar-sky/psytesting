@@ -112,7 +112,6 @@ public class QuizActivity extends BaseActivity {
             public void onResponse(JSONArray response) {
                 try {
 
-                    Log.d("Here Log d", "ты чо не отвечаешь сссука!");
                     for (int i = 0; i < response.length(); i++) {
                         //JSONArray jsonArray = response.getJSONArray(i);
 
