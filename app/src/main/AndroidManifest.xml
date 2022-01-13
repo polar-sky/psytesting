@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".activity.AttemptActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.StatisticActivity"
             android:exported="true" />
         <activity

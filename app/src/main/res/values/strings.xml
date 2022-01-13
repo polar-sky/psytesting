@@ -111,4 +111,9 @@
     <string name="name">name</string>
     <string name="UserName">Имя пользователя:</string>
     <string name="email">Email:</string>
+    <string name="statistic_name">Статистика по попыткам</string>
+    <string name="your_attempts">Ваши попытки</string>
+    <string name="im_dead">Ошибка, повторите попытку</string>
+    <string name="history_empty">История попыток пуста</string>
+
 </resources>
