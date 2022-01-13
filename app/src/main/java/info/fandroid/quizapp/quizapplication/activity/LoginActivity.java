@@ -45,9 +45,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Context context = LoginActivity.this;
-                Class destinationActivity = MainActivity.class;
-                Intent mainActivityIntent = new Intent(context, destinationActivity);
-                startActivity(mainActivityIntent);
+                Class destinationActivity = RegActivity.class;
+                Intent ActivityIntent = new Intent(context, destinationActivity);
+                startActivity(ActivityIntent);
 
             }
         });
@@ -112,12 +112,10 @@ public class LoginActivity extends AppCompatActivity {
         Intent main = new Intent(this, MainActivity.class);
         main.putExtra("token_key", string);
         startActivity(main);
-        finish();
     }
 
     public void goToLoginActivity() {
         Intent login = new Intent(this, LoginActivity.class);
         startActivity(login);
-        finish();
     }
 }

@@ -63,7 +63,6 @@ public class AccountActivity extends AppCompatActivity {
         Intent i = new Intent(this, AttemptActivity.class);
         i.putExtra("token_key", token);
         startActivity(i);
-        finish();
     }
 
     private void getAccountRequest() {

@@ -91,7 +91,6 @@ public class QuizPromptActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 goToTestActivity(isAuth);
-               //ActivityUtilities.getInstance().invokeCommonQuizActivity(mActivity, QuizActivity.class, categoryId, true);
             }
         });
         mBtnNo.setOnClickListener(new View.OnClickListener() {

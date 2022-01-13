@@ -51,7 +51,6 @@ public class ResultActivity extends AppCompatActivity {
         Intent i = new Intent(this, MainActivity.class);
         i.putExtra("token_key", token);
         startActivity(i);
-        finish();
     }
 
 }

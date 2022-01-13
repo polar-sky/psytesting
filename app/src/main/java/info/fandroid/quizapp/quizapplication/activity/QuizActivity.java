@@ -254,7 +254,20 @@ public class QuizActivity extends BaseActivity {
             public void onErrorResponse(VolleyError error) {
                 tvQuestionText.setText(error.getMessage());
             }
-        });
+
+        }){
+        @Override
+        public Map getHeaders () throws AuthFailureError {
+            Map params = new HashMap();
+            params.put("Authorization", "Bearer " + token);
+            return params;
+        }
+
+        @Override
+        public String getBodyContentType () {
+            return "application/json";
+        }
+    };
         requestQueue.add(stringRequest);
     }
 
@@ -264,7 +277,6 @@ public class QuizActivity extends BaseActivity {
         i.putExtra("Results", jsonResult);
         i.putExtra("isAuth", isAuth);
         startActivity(i);
-        finish();
     }
 
     private void runTimer () {

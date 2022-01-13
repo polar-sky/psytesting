@@ -95,6 +95,5 @@ public class RegActivity extends AppCompatActivity {
     private void goToLoginActivity() {
         Intent i = new Intent(this, LoginActivity.class);
         startActivity(i);
-        finish();
     }
 }

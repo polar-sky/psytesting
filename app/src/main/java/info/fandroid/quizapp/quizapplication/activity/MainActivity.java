@@ -95,7 +95,6 @@ public class MainActivity extends BaseActivity {
                         i.putExtra("token_key", token);
                         i.putExtra("isAuth", isAuth);
                         startActivity(i);
-                        finish();
                         return false;
                     }
 
@@ -140,7 +139,6 @@ public class MainActivity extends BaseActivity {
                                 i.putExtra("token_key", token);
                                 i.putExtra("isAuth", isAuth);
                                 startActivity(i);
-                                finish();
                             } else if (drawerItem.getIdentifier() == 30) {
                                 // TODO: invoke SettingActivity
                             } else if (drawerItem.getIdentifier() == 40) {
@@ -215,14 +213,12 @@ public class MainActivity extends BaseActivity {
 
     private void initListener() {
 
-        // recycler list item click listener
         adapter.setItemClickListener(new ListItemClickListener() {
             @Override
             public void onItemClick(int position, View view) {
 
                 CategoryModel model = categoryList.get(position);
                 goToQuizPromptActivity(token);
-                //ActivityUtilities.getInstance().invokeCommonQuizActivity(activity, QuizPromptActivity.class, model.getCategoryId(), true);
 
             }
         });
@@ -232,6 +228,5 @@ public class MainActivity extends BaseActivity {
         Intent main = new Intent(this, QuizPromptActivity.class);
         main.putExtra("token_key", string);
         startActivity(main);
-        finish();
     }
 }
