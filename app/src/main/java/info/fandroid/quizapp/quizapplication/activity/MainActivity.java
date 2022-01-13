@@ -78,7 +78,7 @@ public class MainActivity extends BaseActivity {
         loadData();
         initListener();
 
-        //получаем ебучий токен
+        //получаем token
         Bundle arguments = getIntent().getExtras();
         token = arguments.get("token_key").toString();
 
