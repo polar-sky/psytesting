@@ -33,7 +33,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.BaseActivity" />
-        <activity android:name=".activity.CustomUrlActivity" />
         <activity android:name=".activity.AboutDevActivity" />
         <activity
             android:name=".activity.QuizPromptActivity"
