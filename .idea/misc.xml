@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/activity_about_dev.xml" value="0.234375" />
         <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/activity_account.xml" value="0.234375" />
+        <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/activity_attempt.xml" value="0.371875" />
         <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/activity_custom_url.xml" value="0.234375" />
         <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/activity_loginn.xml" value="0.234375" />
         <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/activity_main.xml" value="0.371875" />
@@ -13,8 +14,10 @@
         <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/activity_reg.xml" value="0.371875" />
         <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/activity_result.xml" value="0.33" />
         <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/activity_splash.xml" value="0.371875" />
+        <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/activity_statistic.xml" value="0.2815126050420168" />
         <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/content_main.xml" value="0.371875" />
         <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/fragment_custom_dialog.xml" value="0.234375" />
+        <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/item_attempts.xml" value="0.371875" />
         <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/item_category_recycler.xml" value="0.371875" />
         <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/item_quiz.xml" value="0.32382246376811596" />
         <entry key="..\:/0/pri-118/mobile/exercise/app/src/main/res/layout/toolbar.xml" value="0.371875" />
@@ -25,8 +28,6 @@
         <entry key="..\:/Users/BSC/AndroidStudioProjects/psytesting/app/src/main/res/layout/fragment_custom_dialog.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/BSC/AndroidStudioProjects/psytesting/app/src/main/res/layout/toolbar.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/BSC/AndroidStudioProjects/psytesting/app/src/main/res/layout/toolbar_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/yuni/AndroidStudioProjects/psytesting/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/yuni/AndroidStudioProjects/psytesting/app/src/main/res/layout/activity_statistic.xml" value="0.22" />
       </map>
     </option>
   </component>

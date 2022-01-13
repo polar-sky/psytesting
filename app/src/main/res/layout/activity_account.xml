@@ -58,6 +58,7 @@
             android:textSize="17sp" />
 
         <Button
+            android:id="@+id/btnAttempts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvEm"

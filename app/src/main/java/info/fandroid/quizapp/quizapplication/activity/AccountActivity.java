@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -29,6 +31,7 @@ public class AccountActivity extends AppCompatActivity {
 
     private TextView tvUserName;
     private TextView tvEmail;
+    private Button btnAttempts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +45,25 @@ public class AccountActivity extends AppCompatActivity {
 
         tvUserName = findViewById(R.id.tvUserName);
         tvEmail = findViewById(R.id.tvEmail);
+        btnAttempts = findViewById(R.id.btnAttempts);
 
         getAccountRequest();
+
+        View.OnClickListener btnAttemptsClick = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToAttemptActivity();
+            }
+        };
+
+        btnAttempts.setOnClickListener(btnAttemptsClick);
+    }
+
+    private void goToAttemptActivity() {
+        Intent i = new Intent(this, AttemptActivity.class);
+        i.putExtra("token_key", token);
+        startActivity(i);
+        finish();
     }
 
     private void getAccountRequest() {
